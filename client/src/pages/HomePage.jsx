@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 const HomePage = () => {
   const sideCartTotal = useSelector((state) => state.post.sideCartTotal);
 
-  if (sideCartTotal === true) {
+  if (sideCartTotal === false) {
     document.body.style.overflow = "auto";
   } else {
     document.body.style.overflow = "hidden";

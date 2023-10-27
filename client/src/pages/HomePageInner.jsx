@@ -26,7 +26,7 @@ const HomePageInner = () => {
         {/* CART TOTAL */}
         <div
           className={`cart-wrapper flex-[2] h-full min-w-[300px] md:border md:static fixed top-0 left-0 right-0 bottom-0 md:z-0 z-50 bg-white w-full ${
-            sideCartTotal === true ? "hidden" : "block"
+            sideCartTotal === true ? "block" : "hidden"
           }`}
         >
           <CartTotal />
@@ -36,8 +36,8 @@ const HomePageInner = () => {
         <div
           className={`${
             sideCartTotal === true
-              ? "h-full flex items-center"
-              : "h-full absolute right-3 -top-[5.75rem] md:-top-3 md:right-0 z-[1000000]"
+              ? "h-full absolute right-3 -top-[5.75rem] md:-top-3 md:right-0 z-[1000000]"
+              : "h-full flex items-center"
           }`}
         >
           <Button
@@ -45,7 +45,7 @@ const HomePageInner = () => {
             type="primary"
             shape="circle"
             size="large"
-            icon={sideCartTotal === true ? <LeftOutlined /> : <CloseOutlined />}
+            icon={sideCartTotal === true ? <CloseOutlined /> : <LeftOutlined />}
           ></Button>
         </div>
       </div>
