@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Electrolize&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Electrolize", sans-serif;
+}
+
+.ant-btn-primary {
+  background-color: #1677ff;
+}
+
+@layer components {
+  .menu-link {
+    @apply flex flex-col justify-center items-center gap-1 hover:text-[#40a9ff] duration-300;
+  }
+
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .flex-between {
+    @apply flex justify-between items-center;
+  }
+
+  .categories-item {
+    @apply bg-green-700 py-6 text-white cursor-pointer hover:bg-pink-700 duration-300 rounded-md w-full flex-center min-w-[145px];
+  }
+}
+
+:where(.css-dev-only-do-not-override-amq5gd).ant-card .ant-card-body {
+  padding: 0.8rem 0.6rem;
+}
+
+@media (min-width: 768px) {
+  .categories::-webkit-scrollbar {
+    display: none;
+  }
+
+  .products::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    overflow: hidden;
+  }
+}
