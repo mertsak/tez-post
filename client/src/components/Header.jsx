@@ -37,7 +37,7 @@ const Header = () => {
 
         {/* BASKET */}
         <Badge count={1} offset={[-5, 2]} className="md:hidden flex">
-          <Link to="/cartPage" className="menu-link">
+          <Link to="/basketPage" className="menu-link">
             <ShoppingCartOutlined className="text-2xl" />
             <span className="text-[10px]">Basket</span>
           </Link>
@@ -51,16 +51,16 @@ const Header = () => {
           </Link>
 
           <Badge count={1} offset={[-5, 2]} className="md:flex hidden">
-            <Link to="/cartPage" className="menu-link">
+            <Link to="/basketPage" className="menu-link">
               <ShoppingCartOutlined className="text-xl md:text-2xl" />
               <span className="text-[10px] md:text-xs">Basket</span>
             </Link>
           </Badge>
 
-          <a href="/" className="menu-link">
+          <Link to="/billPage" className="menu-link">
             <CopyOutlined className="text-xl md:text-2xl" />
-            <span className="text-[10px] md:text-xs">Bills</span>
-          </a>
+            <span className="text-[10px] md:text-xs">Bill</span>
+          </Link>
 
           <a href="/" className="menu-link">
             <UserOutlined className="text-xl md:text-2xl" />

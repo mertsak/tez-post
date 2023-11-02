@@ -4,17 +4,17 @@ const BasketCard = ({ showModal }) => {
   return (
     <Card className="w-72">
       <div className="flex justify-between items-center">
-        <span>Ara Toplam:</span>
+        <span>Subtotal:</span>
         <span>1000</span>
       </div>
 
       <div className="flex justify-between items-center my-2">
-        <span>KDV toplam %8:</span>
+        <span>VAT total %8:</span>
         <span className="font-bold text-red-500">+25.92$</span>
       </div>
 
       <div className="flex justify-between items-center font-bold">
-        <span>Toplam:</span>
+        <span>Total:</span>
         <span className="font-bold">1000</span>
       </div>
 
@@ -24,7 +24,7 @@ const BasketCard = ({ showModal }) => {
         size="large"
         type="primary"
       >
-        Ödeme Yap
+        Pay
       </Button>
     </Card>
   );

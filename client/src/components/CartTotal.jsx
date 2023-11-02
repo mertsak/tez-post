@@ -5,7 +5,7 @@ const CartTotal = () => {
   return (
     <div className="cart h-full flex flex-col md:max-h-[calc(100vh-108px)]">
       <h2 className="bg-blue-700 text-center py-4 text-white font-bold tracking-wide">
-        Sepetteki Ürünler
+        Items in cart
       </h2>
 
       <ul className="cart-items px-2 flex flex-col gap-y-2 overflow-y-auto">
@@ -18,7 +18,7 @@ const CartTotal = () => {
             />
 
             <div className="flex flex-col ml-2">
-              <b>Elma</b>
+              <b>Apple</b>
               <span>12$ x 2</span>
             </div>
           </div>
@@ -51,7 +51,7 @@ const CartTotal = () => {
             />
 
             <div className="flex flex-col ml-2">
-              <b>Elma</b>
+              <b>Apple</b>
               <span>12$ x 2</span>
             </div>
           </div>
@@ -84,7 +84,7 @@ const CartTotal = () => {
             />
 
             <div className="flex flex-col ml-2">
-              <b>Elma</b>
+              <b>Apple</b>
               <span>12$ x 2</span>
             </div>
           </div>
@@ -117,7 +117,7 @@ const CartTotal = () => {
             />
 
             <div className="flex flex-col ml-2">
-              <b>Elma</b>
+              <b>Apple</b>
               <span>12$ x 2</span>
             </div>
           </div>
@@ -150,7 +150,7 @@ const CartTotal = () => {
             />
 
             <div className="flex flex-col ml-2">
-              <b>Elma</b>
+              <b>Apple</b>
               <span>12$ x 2</span>
             </div>
           </div>
@@ -183,7 +183,7 @@ const CartTotal = () => {
             />
 
             <div className="flex flex-col ml-2">
-              <b>Elma</b>
+              <b>Apple</b>
               <span>12$ x 2</span>
             </div>
           </div>
@@ -216,7 +216,7 @@ const CartTotal = () => {
             />
 
             <div className="flex flex-col ml-2">
-              <b>Elma</b>
+              <b>Apple</b>
               <span>12$ x 2</span>
             </div>
           </div>
@@ -249,7 +249,7 @@ const CartTotal = () => {
             />
 
             <div className="flex flex-col ml-2">
-              <b>Elma</b>
+              <b>Apple</b>
               <span>12$ x 2</span>
             </div>
           </div>
@@ -282,7 +282,7 @@ const CartTotal = () => {
             />
 
             <div className="flex flex-col ml-2">
-              <b>Elma</b>
+              <b>Apple</b>
               <span>12$ x 2</span>
             </div>
           </div>
@@ -310,26 +310,26 @@ const CartTotal = () => {
       <div className="cart-totals mt-auto">
         <div className="border">
           <div className="flex justify-between p-2">
-            <b>Ara Toplam</b>
-            <span>99.99 TL</span>
+            <b>Subtotal:</b>
+            <span>99.99$</span>
           </div>
 
           <div className="flex justify-between p-2">
-            <b>KDV %8</b>
-            <span className="text-red-500">99.99 TL</span>
+            <b>VAT total %8</b>
+            <span className="text-red-500">99.99$</span>
           </div>
         </div>
 
         <div className="border-b mt-4">
           <div className="flex justify-between p-2">
-            <b className="text-xl text-green-500">Genel Toplam</b>
-            <span className="text-xl">99.99 TL</span>
+            <b className="text-xl text-green-500">Grand total</b>
+            <span className="text-xl">99.99$</span>
           </div>
         </div>
 
         <div className="p-4">
           <Button type="primary" size="large" className="w-full mt-2">
-            Siparişi Tamamla
+            Complete the order
           </Button>
 
           <Button
@@ -339,7 +339,7 @@ const CartTotal = () => {
             icon={<ClearOutlined />}
             className="w-full mt-2"
           >
-            Temizle
+            Clear
           </Button>
         </div>
       </div>

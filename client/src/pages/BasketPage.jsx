@@ -1,9 +1,9 @@
 import { useState } from "react";
-import CreateBill from "../components/CreateBill";
-import BasketTable from "../components/BasketTable";
-import BasketCard from "../components/BasketCard";
+import CreateBill from "../components/Basket/CreateBill";
+import BasketCard from "../components/Basket/BasketCard";
+import BasketTable from "../components/Basket/BasketTable";
 
-const CartPage = () => {
+const BasketPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -21,6 +21,7 @@ const CartPage = () => {
   return (
     <>
       <div className="px-4">
+        <h2 className="text-4xl font-semibold text-center mb-6">Basket</h2>
         <BasketTable />
 
         <div className="cart-total flex justify-end mt-4">
@@ -37,4 +38,4 @@ const CartPage = () => {
   );
 };
 
-export default CartPage;
+export default BasketPage;

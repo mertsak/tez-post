@@ -18,7 +18,7 @@ const CreateBill = ({ isModalOpen, handleOk, handleCancel }) => {
 
   return (
     <Modal
-      title="Fatura Oluştur"
+      title="Create Bill"
       open={isModalOpen}
       onOk={handleOk}
       footer={false}
@@ -83,37 +83,36 @@ const CreateBill = ({ isModalOpen, handleOk, handleCancel }) => {
             },
           ]}
         >
-          <Select placeholder="ödeme yöntemi seçiniz">
-            <Select.Option value="nakit">Nakit</Select.Option>
-            <Select.Option value="kredi_kartı">Kredi Kartı</Select.Option>
+          <Select placeholder="Please choose payment method">
+            <Select.Option value="nakit">Cash</Select.Option>
+            <Select.Option value="kredi_kartı">Credit Card</Select.Option>
           </Select>
         </Form.Item>
 
         <Card className="w-full">
           <div className="flex justify-between items-center">
-            <span>Ara Toplam:</span>
+            <span>Subtotal:</span>
             <span>1000</span>
           </div>
 
           <div className="flex justify-between items-center my-2">
-            <span>KDV toplam %8:</span>
+            <span>VAT total %8:</span>
             <span className="font-bold text-red-500">+25.92$</span>
           </div>
 
           <div className="flex justify-between items-center font-bold">
-            <span>Toplam:</span>
+            <span>Total:</span>
             <span className="font-bold">1000</span>
           </div>
-
-          <Button
-            className="w-full mt-4"
-            size="large"
-            type="primary"
-            htmlType="submit"
-          >
-            Ödeme Yap
-          </Button>
         </Card>
+        <Button
+          className="w-full mt-4"
+          size="large"
+          type="primary"
+          htmlType="submit"
+        >
+          Pay
+        </Button>
       </Form>
     </Modal>
   );
