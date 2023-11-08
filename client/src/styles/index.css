@@ -37,6 +37,10 @@ body {
   padding: 0.8rem 0.6rem;
 }
 
+:where(.css-dev-only-do-not-override-amq5gd).ant-card-bordered {
+  border: 1px solid #d8d8d8;
+}
+
 @media (min-width: 768px) {
   .categories::-webkit-scrollbar {
     display: none;
