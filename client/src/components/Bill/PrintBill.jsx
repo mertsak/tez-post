@@ -191,26 +191,61 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel }) => {
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th className="text-right pt-6" colSpan="4" scope="row">
+                    <th
+                      className="text-right pt-4 sm:table-cell hidden"
+                      colSpan="4"
+                      scope="row"
+                    >
                       <span className="font-bold text-slate-700">
                         Ara Toplam :
                       </span>
+                    </th>
+                    <th
+                      className="text-left pt-4 sm:hidden"
+                      scope="row"
+                      colSpan="4"
+                    >
+                      <p className="font-bold text-slate-700">Ara Toplam :</p>
                     </th>
                     <th className="text-right pt-4" scope="row">
                       <span className="font-normal text-slate-700">61₺</span>
                     </th>
                   </tr>
                   <tr>
-                    <th className="text-right pt-4" colSpan="4" scope="row">
+                    <th
+                      className="text-right pt-4 sm:table-cell hidden"
+                      colSpan="4"
+                      scope="row"
+                    >
                       <span className="font-bold text-slate-700">KDV :</span>
                     </th>
+                    <th
+                      className="text-left pt-4 sm:hidden"
+                      scope="row"
+                      colSpan="4"
+                    >
+                      <p className="font-bold text-slate-700">KDV :</p>
+                    </th>
                     <th className="text-right pt-4" scope="row">
-                      <span className="font-normal text-red-600">+4.88₺</span>
+                      <span className="font-bold text-red-600">+4.88₺</span>
                     </th>
                   </tr>
                   <tr>
-                    <th className="text-right pt-4" colSpan="4" scope="row">
-                      <span className="font-bold text-slate-700">Total :</span>
+                    <th
+                      className="text-right pt-4 sm:table-cell hidden"
+                      colSpan="4"
+                      scope="row"
+                    >
+                      <span className="font-bold text-slate-700">
+                        Genel Toplam :
+                      </span>
+                    </th>
+                    <th
+                      className="text-left pt-4 sm:hidden"
+                      scope="row"
+                      colSpan="4"
+                    >
+                      <p className="font-bold text-slate-700">Genel Toplam :</p>
                     </th>
                     <th className="text-right pt-4" scope="row">
                       <span className="font-normal text-slate-700">65.88₺</span>
