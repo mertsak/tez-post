@@ -12,10 +12,12 @@ import {
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setSideCartTotal } from "../redux/postSlice";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
   const sideCartTotal = useSelector((state) => state.post.sideCartTotal);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   return (
     <div className="border-b mb-6">
@@ -77,7 +79,11 @@ const Header = () => {
             <span className="text-[10px] md:text-xs">Logout</span>
           </a>
 
-          <div className="md:hidden">
+          <div
+            className={`md:hidden  ${
+              location.pathname === "/" ? "block" : "hidden"
+            }`}
+          >
             <Button
               onClick={() => dispatch(setSideCartTotal(!sideCartTotal))}
               type="primary"
