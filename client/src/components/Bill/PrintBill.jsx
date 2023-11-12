@@ -16,7 +16,7 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel }) => {
       ]}
     >
       <section className="py-20 bg-black">
-        <div className="max-w-5xl mx-auto bg-white px-6">
+        <div className="max-w-5xl mx-auto bg-white px-4 sm:px-6">
           <article className="overflow-hidden">
             <div className="logo my-6">
               <h2 className="text-4xl font-bold text-slate-700">LOGO</h2>
@@ -106,7 +106,7 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel }) => {
                       <img
                         src="https://i.lezzet.com.tr/images-xxlarge-secondary/elma-nasil-yenir-221135ca-f383-474c-a4f5-ad02a45db978.jpg"
                         alt=""
-                        className="w-12 h-12 object-cover"
+                        className="w-12 h-12 object-cover rounded-md"
                       />
                     </td>
                     <td className="py-4">
@@ -128,7 +128,7 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel }) => {
                       <img
                         src="https://i.lezzet.com.tr/images-xxlarge-secondary/elma-nasil-yenir-221135ca-f383-474c-a4f5-ad02a45db978.jpg"
                         alt=""
-                        className="w-12 h-12 object-cover"
+                        className="w-12 h-12 object-cover rounded-md"
                       />
                     </td>
                     <td className="py-4">
@@ -150,7 +150,7 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel }) => {
                       <img
                         src="https://i.lezzet.com.tr/images-xxlarge-secondary/elma-nasil-yenir-221135ca-f383-474c-a4f5-ad02a45db978.jpg"
                         alt=""
-                        className="w-12 h-12 object-cover"
+                        className="w-12 h-12 object-cover rounded-md"
                       />
                     </td>
                     <td className="py-4">
@@ -172,7 +172,7 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel }) => {
                       <img
                         src="https://i.lezzet.com.tr/images-xxlarge-secondary/elma-nasil-yenir-221135ca-f383-474c-a4f5-ad02a45db978.jpg"
                         alt=""
-                        className="w-12 h-12 object-cover"
+                        className="w-12 h-12 object-cover rounded-md"
                       />
                     </td>
                     <td className="py-4">

@@ -64,15 +64,15 @@ const Header = () => {
             <span className="text-[10px] md:text-xs">Bill</span>
           </Link>
 
-          <a href="/" className="menu-link">
+          <Link to="/customerPage" className="menu-link">
             <UserOutlined className="text-xl md:text-2xl" />
             <span className="text-[10px] md:text-xs">Customers</span>
-          </a>
+          </Link>
 
-          <a href="/" className="menu-link">
+          <Link to="/statisticPage" className="menu-link">
             <BarChartOutlined className="text-xl md:text-2xl" />
             <span className="text-[10px] md:text-xs">Statistics</span>
-          </a>
+          </Link>
 
           <a href="/" className="menu-link">
             <LoginOutlined className="text-xl md:text-2xl" />

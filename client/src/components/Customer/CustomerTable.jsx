@@ -1,6 +1,6 @@
 import { Table } from "antd";
 
-const BasketTable = () => {
+const CustomerTable = () => {
   const data = [
     {
       key: "1",
@@ -74,4 +74,4 @@ const BasketTable = () => {
   );
 };
 
-export default BasketTable;
+export default CustomerTable;
