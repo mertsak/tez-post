@@ -1,98 +1,87 @@
 import StatisticCard from "../components/Statistic/StatisticCard";
-import { Area, Pie } from "@ant-design/charts";
-import { useEffect, useState } from "react";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Filler,
+} from "chart.js";
+import { Pie, Line } from "react-chartjs-2";
+import faker from "faker";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  ArcElement,
+  Tooltip,
+  Legend,
+  Title,
+  Filler
+);
+
+export const data2 = {
+  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+  datasets: [
+    {
+      label: "# of Votes",
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: [
+        "rgba(255, 99, 132, 0.2)",
+        "rgba(54, 162, 235, 0.2)",
+        "rgba(255, 206, 86, 0.2)",
+        "rgba(75, 192, 192, 0.2)",
+        "rgba(153, 102, 255, 0.2)",
+        "rgba(255, 159, 64, 0.2)",
+      ],
+      borderColor: [
+        "rgba(255, 99, 132, 1)",
+        "rgba(54, 162, 235, 1)",
+        "rgba(255, 206, 86, 1)",
+        "rgba(75, 192, 192, 1)",
+        "rgba(153, 102, 255, 1)",
+        "rgba(255, 159, 64, 1)",
+      ],
+      borderWidth: 1,
+    },
+  ],
+};
+
+export const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "top",
+    },
+    title: {
+      display: true,
+      text: "Chart.js Line Chart",
+    },
+  },
+};
+
+const labels = ["January", "February", "March", "April", "May", "June", "July"];
+
+export const data = {
+  labels: labels,
+  datasets: [
+    {
+      fill: true,
+      label: "Dataset 2",
+      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+      borderColor: "rgb(53, 162, 235)",
+      backgroundColor: "rgba(53, 162, 235, 0.5)",
+    },
+  ],
+};
 
 const StatisticPage = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    asyncFetch();
-  }, []);
-
-  const asyncFetch = () => {
-    fetch(
-      "https://gw.alipayobjects.com/os/bmw-prod/360c3eae-0c73-46f0-a982-4746a6095010.json"
-    )
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => {
-        console.log("fetch data failed", error);
-      });
-  };
-
-  const config = {
-    data,
-    xField: "timePeriod",
-    yField: "value",
-    xAxis: {
-      range: [0, 1],
-    },
-  };
-
-  const data2 = [
-    {
-      type: "分类一",
-      value: 27,
-    },
-    {
-      type: "分类二",
-      value: 25,
-    },
-    {
-      type: "分类三",
-      value: 18,
-    },
-    {
-      type: "分类四",
-      value: 15,
-    },
-    {
-      type: "分类五",
-      value: 10,
-    },
-    {
-      type: "其他",
-      value: 5,
-    },
-  ];
-
-  const config2 = {
-    appendPadding: 10,
-    data: data2,
-    angleField: "value",
-    colorField: "type",
-    radius: 1,
-    innerRadius: 0.6,
-    label: {
-      type: "inner",
-      offset: "-50%",
-      content: "{value}",
-      style: {
-        textAlign: "center",
-        fontSize: 14,
-      },
-    },
-    interactions: [
-      {
-        type: "element-selected",
-      },
-      {
-        type: "element-active",
-      },
-    ],
-    statistic: {
-      title: false,
-      content: {
-        style: {
-          whiteSpace: "pre-wrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-        },
-        content: "AntV\nG2Plot",
-      },
-    },
-  };
-
   return (
     <>
       <div className="px-4 md:pb-10 pb-20">
@@ -132,12 +121,12 @@ const StatisticPage = () => {
           </div>
 
           <div className="flex justify-between items-center gap-10 lg:flex-row flex-col">
-            <div className="lg:w-1/2 lg:h-full h-72 w-full">
-              <Area {...config} />
+            <div className="w-full h-full flex justify-center items-center">
+              <Line options={options} data={data} />
             </div>
 
-            <div className="lg:w-1/2 lg:h-full h-72 w-full">
-              <Pie {...config2} />
+            <div className="w-full h-full flex justify-center items-center  max-h-[500px]">
+              <Pie data={data2} />
             </div>
           </div>
         </div>
