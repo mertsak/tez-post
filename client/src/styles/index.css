@@ -33,12 +33,12 @@ body {
   }
 }
 
-:where(.css-dev-only-do-not-override-amq5gd).ant-card .ant-card-body {
+:where(.css-dev-only-do-not-override-1adbn6x).ant-card .ant-card-body {
   padding: 0.8rem 0.6rem !important;
 }
 
-:where(.css-dev-only-do-not-override-amq5gd).ant-card-bordered {
-  border: 1px solid #d8d8d8 !important;
+:where(.css-dev-only-do-not-override-1adbn6x).ant-card-bordered {
+  border: 1px solid #cfcfcf !important;
 }
 
 @media (min-width: 768px) {
