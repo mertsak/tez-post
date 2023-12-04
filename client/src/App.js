@@ -7,6 +7,8 @@ import HomePageInner from "./pages/HomePageInner.jsx";
 import BillPage from "./pages/BillPage.jsx";
 import CustomerPage from "./pages/CustomerPage.jsx";
 import StatisticPage from "./pages/StatisticPage.jsx";
+import RegisterPage from "./pages/auth/RegisterPage.jsx";
+import LoginPage from "./pages/auth/LoginPage.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -35,6 +37,14 @@ function App() {
           element: <StatisticPage />,
         },
       ],
+    },
+    {
+      path: "/registerPage",
+      element: <RegisterPage />,
+    },
+    {
+      path: "/loginPage",
+      element: <LoginPage />,
     },
   ]);
 
