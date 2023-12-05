@@ -16,8 +16,12 @@ const LoginPage = () => {
               name={"email"}
               rules={[
                 {
+                  type: "email",
+                  message: "The input is not valid E-mail!",
+                },
+                {
                   required: true,
-                  message: "E-mail Alanı Boş Bırakılamaz!",
+                  message: "Please input your E-mail!",
                 },
               ]}
             >
