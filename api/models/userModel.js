@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const UserSchema = mongoose.Schema(
+const UserSchema = new mongoose.Schema(
   {
     username: {
       type: String,
@@ -12,10 +12,6 @@ const UserSchema = mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
-    },
-    verify: {
-      type: Boolean,
       required: true,
     },
   },

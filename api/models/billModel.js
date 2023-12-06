@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const BillSchema = mongoose.Schema(
+const BillSchema = new mongoose.Schema(
   {
     customerName: {
       type: String,
