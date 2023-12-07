@@ -52,7 +52,7 @@ const Categories = () => {
     <>
       <ul className="flex flex-row md:flex-col mb-1 gap-4 md:justify-center items-center text-lg">
         {categoriesItems &&
-          categoriesItems?.map((item) => {
+          categoriesItems.map((item) => {
             return (
               <li className="categories-item" key={item._id}>
                 <span>{item.title}</span>
