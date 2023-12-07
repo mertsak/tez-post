@@ -29,7 +29,7 @@ body {
   }
 
   .categories-item {
-    @apply bg-green-700 py-6 text-white cursor-pointer hover:bg-pink-700 duration-300 rounded-md w-full flex-center min-w-[145px];
+    @apply flex items-center justify-center bg-green-700 py-6 text-white cursor-pointer hover:bg-pink-700 duration-300 rounded-md w-full min-w-[145px];
   }
 }
 
