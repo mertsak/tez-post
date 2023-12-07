@@ -1,6 +1,6 @@
 import { Button } from "antd";
 import CartTotal from "../components/CartTotal";
-import Categories from "../components/Categories";
+import Categories from "../components/Categories/Categories";
 import Products from "../components/Products";
 import { LeftOutlined, CloseOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
