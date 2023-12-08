@@ -1,6 +1,6 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Modal, Button, Form, Input, message } from "antd";
-import { addCategoryItem } from "../../redux/services/service.js";
+import { addCategoryItem } from "../../redux/services/categoryService";
 import { useDispatch } from "react-redux";
 
 const AddCateModal = ({

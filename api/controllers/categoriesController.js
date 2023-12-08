@@ -39,7 +39,6 @@ const updateCategory = async (req, res) => {
 const deleteCategory = async (req, res) => {
   try {
     const { _id } = req.body;
-    console.log(_id);
 
     const deletedCategory = await Category.findOneAndDelete(_id);
 

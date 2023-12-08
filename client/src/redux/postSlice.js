@@ -4,13 +4,16 @@ import {
   addCategoryItem,
   editCategoryItem,
   deleteCategoryItem,
-} from "./services/service";
+} from "./services/categoryService";
+
+import { getProductsItems } from "./services/productService";
 
 export const postSlice = createSlice({
   name: "post",
   initialState: {
     sideCartTotal: false,
     categoriesItems: [],
+    productsItems: [],
   },
   reducers: {
     setSideCartTotal: (state, action) => {
@@ -18,6 +21,7 @@ export const postSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // Categories
     builder.addCase(getCategoriesItems.fulfilled, (state, action) => {
       state.categoriesItems = action.payload;
     });
@@ -30,10 +34,14 @@ export const postSlice = createSlice({
       );
     });
     builder.addCase(deleteCategoryItem.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.categoriesItems = state.categoriesItems.filter(
         (item) => item._id !== action.payload._id
       );
+    });
+
+    // Products
+    builder.addCase(getProductsItems.fulfilled, (state, action) => {
+      state.productsItems = action.payload;
     });
   },
 });

@@ -6,7 +6,7 @@ import { useState } from "react";
 import {
   editCategoryItem,
   deleteCategoryItem,
-} from "../../redux/services/service.js";
+} from "../../redux/services/categoryService";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 

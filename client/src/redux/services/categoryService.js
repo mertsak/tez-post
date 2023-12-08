@@ -53,7 +53,6 @@ export const deleteCategoryItem = createAsyncThunk(
         `${process.env.REACT_APP_BASE_URL}/categories/deleteCategory`,
         values
       );
-      console.log(response);
       return response.data;
     } catch (error) {
       console.log(error);

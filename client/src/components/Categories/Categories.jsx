@@ -2,7 +2,7 @@ import { PlusOutlined, EditOutlined } from "@ant-design/icons";
 import React, { useState, useEffect } from "react";
 import { Form } from "antd";
 import { useSelector, useDispatch } from "react-redux";
-import { getCategoriesItems } from "../../redux/services/service.js";
+import { getCategoriesItems } from "../../redux/services/categoryService";
 import AddCateModal from "./AddCateModal.jsx";
 import EditCateModal from "./EditCateModal.jsx";
 
