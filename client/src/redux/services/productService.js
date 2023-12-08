@@ -14,3 +14,20 @@ export const getProductsItems = createAsyncThunk(
     }
   }
 );
+
+export const addProductItem = createAsyncThunk(
+  "products/addProductItem",
+  async (values) => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/products/createProduct`,
+        values
+      );
+
+      console.log(response)
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);

@@ -6,7 +6,7 @@ import {
   deleteCategoryItem,
 } from "./services/categoryService";
 
-import { getProductsItems } from "./services/productService";
+import { getProductsItems, addProductItem } from "./services/productService";
 
 export const postSlice = createSlice({
   name: "post",
@@ -25,14 +25,17 @@ export const postSlice = createSlice({
     builder.addCase(getCategoriesItems.fulfilled, (state, action) => {
       state.categoriesItems = action.payload;
     });
+
     builder.addCase(addCategoryItem.fulfilled, (state, action) => {
       state.categoriesItems = [...state.categoriesItems, action.payload];
     });
+
     builder.addCase(editCategoryItem.fulfilled, (state, action) => {
       state.categoriesItems = state.categoriesItems.map((item) =>
         item._id === action.payload._id ? action.payload : item
       );
     });
+
     builder.addCase(deleteCategoryItem.fulfilled, (state, action) => {
       state.categoriesItems = state.categoriesItems.filter(
         (item) => item._id !== action.payload._id
@@ -42,6 +45,10 @@ export const postSlice = createSlice({
     // Products
     builder.addCase(getProductsItems.fulfilled, (state, action) => {
       state.productsItems = action.payload;
+    });
+
+    builder.addCase(addProductItem.fulfilled, (state, action) => {
+      state.productsItems = [...state.productsItems, action.payload];
     });
   },
 });
