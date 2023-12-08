@@ -14,7 +14,6 @@ const Categories = () => {
   const { categoriesItems } = useSelector((state) => state.post);
 
   // Add Modal
-
   const showAddModal = () => {
     setIsAddModalOpen(true);
   };
@@ -28,7 +27,6 @@ const Categories = () => {
   };
 
   // Edit Modal
-
   const showEditModal = () => {
     setIsEditModalOpen(true);
   };

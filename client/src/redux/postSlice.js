@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCategoriesItems } from "./services/service";
+import {
+  getCategoriesItems,
+  addCategoryItem,
+  editCategoryItem,
+} from "./services/service";
 
 export const postSlice = createSlice({
   name: "post",
@@ -13,16 +17,17 @@ export const postSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(getCategoriesItems.pending, (state) => {
-        state.categoriesItems = [];
-      })
-      .addCase(getCategoriesItems.fulfilled, (state, action) => {
-        state.categoriesItems = action.payload;
-      })
-      .addCase(getCategoriesItems.rejected, (state) => {
-        state.categoriesItems = [];
-      });
+    builder.addCase(getCategoriesItems.fulfilled, (state, action) => {
+      state.categoriesItems = action.payload;
+    });
+    builder.addCase(addCategoryItem.fulfilled, (state, action) => {
+      state.categoriesItems = [...state.categoriesItems, action.payload];
+    });
+    builder.addCase(editCategoryItem.fulfilled, (state, action) => {
+      state.categoriesItems = state.categoriesItems.map((item) =>
+        item._id === action.payload._id ? action.payload : item
+      );
+    });
   },
 });
 

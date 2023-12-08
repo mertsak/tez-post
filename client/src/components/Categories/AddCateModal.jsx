@@ -1,7 +1,6 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Modal, Button, Form, Input, message } from "antd";
-import axios from "axios";
-import { getCategoriesItems } from "../../redux/services/service.js";
+import { addCategoryItem } from "../../redux/services/service.js";
 import { useDispatch } from "react-redux";
 
 const AddCateModal = ({
@@ -9,27 +8,16 @@ const AddCateModal = ({
   handleAddCancel,
   isAddModalOpen,
   form,
-  setIsAddModalOpen,
 }) => {
   const dispatch = useDispatch();
 
   const onFinish = (values) => {
     try {
-      axios
-        .post(
-          `${process.env.REACT_APP_BASE_URL}/categories/createCategory`,
-          values
-        )
-        .then((res) => {
-          res.status === 201 && message.success("Category added successfully");
-          res.status === 400 && message.error("Category already exists");
-          setIsAddModalOpen(false);
-        })
-        .then(() => {
-          dispatch(getCategoriesItems());
-        });
+      dispatch(addCategoryItem(values));
+      message.success("Category added successfully");
       form.resetFields();
     } catch (error) {
+      message.error("Category already exists");
       console.log(error);
     }
   };

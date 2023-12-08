@@ -31,6 +31,10 @@ body {
   .categories-item {
     @apply flex items-center justify-center bg-green-700 py-6 text-white cursor-pointer hover:bg-pink-700 duration-300 rounded-md w-full min-w-[145px];
   }
+
+  .danger {
+    @apply bg-[#ff4d4f] text-white shadow-sm rounded-lg text-base hover:bg-[#ff7875] hover:!text-white hover:!border-red-400 hover:!opacity-80 duration-300;
+  }
 }
 
 :where(.css-dev-only-do-not-override-1adbn6x).ant-card .ant-card-body {
