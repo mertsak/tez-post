@@ -1,9 +1,12 @@
 import "antd-button-color/dist/css/style.css";
-import { Modal, Form, Table, Input, Button, message, form } from "antd";
+import { Modal, Form, Table, Input, Button, message } from "antd";
 import { useSelector } from "react-redux";
 import { SaveOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { useState } from "react";
-import { editCategoryItem } from "../../redux/services/service.js";
+import {
+  editCategoryItem,
+  deleteCategoryItem,
+} from "../../redux/services/service.js";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
@@ -57,6 +60,7 @@ const EditCateModalComponent = ({
           />
 
           <Button
+            onClick={() => deleteCategory(record._id)}
             className="danger flex-center"
             shape="circle"
             icon={<DeleteOutlined />}
@@ -71,6 +75,18 @@ const EditCateModalComponent = ({
       dispatch(editCategoryItem({ ...values, _id: editingRow._id }));
       message.success("Category Edited Successfully");
       setEditingRow({});
+    } catch (error) {
+      message.error("Something went wrong");
+      console.log(error);
+    }
+  };
+
+  const deleteCategory = (id) => {
+    try {
+      if (window.confirm("Are you sure you want to delete this category?")) {
+        dispatch(deleteCategoryItem(id));
+        message.success("Category Deleted Successfully");
+      }
     } catch (error) {
       message.error("Something went wrong");
       console.log(error);

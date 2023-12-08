@@ -44,3 +44,19 @@ export const editCategoryItem = createAsyncThunk(
     }
   }
 );
+
+export const deleteCategoryItem = createAsyncThunk(
+  "categories/deleteCategoryItem",
+  async (values) => {
+    try {
+      const response = await axios.delete(
+        `${process.env.REACT_APP_BASE_URL}/categories/deleteCategory`,
+        values
+      );
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
