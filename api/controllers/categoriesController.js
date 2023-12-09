@@ -40,9 +40,9 @@ const deleteCategory = async (req, res) => {
   try {
     const { _id } = req.body;
 
-    const deletedCategory = await Category.findOneAndDelete(_id);
+    const deleleteCategory = await Category.findByIdAndDelete(_id);
 
-    return res.status(200).json(deletedCategory);
+    return res.status(200).json(deleleteCategory);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

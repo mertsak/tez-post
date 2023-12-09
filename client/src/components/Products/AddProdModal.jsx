@@ -10,7 +10,7 @@ const AddProdModal = ({
   form,
 }) => {
   const dispatch = useDispatch();
-  const { productsItems, categoriesItems } = useSelector((state) => state.post);
+  const { categoriesItems } = useSelector((state) => state.post);
 
   const onFinish = (values) => {
     try {

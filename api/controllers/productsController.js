@@ -20,11 +20,11 @@ const createProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   try {
-    const { _id, title, price, category, image } = req.body;
+    const { _id, title, price, category, img } = req.body;
 
     const updateProduct = await Product.findByIdAndUpdate(
       _id,
-      { title, price, category, image },
+      { title, price, category, img },
       { new: true }
     );
 
@@ -38,9 +38,9 @@ const deleteProduct = async (req, res) => {
   try {
     const { _id } = req.body;
 
-    await Product.findByIdAndDelete(_id);
+    const deleteProduct = await Product.findByIdAndDelete(_id);
 
-    return res.status(200).json("Product deleted successfully");
+    return res.status(200).json(deleteProduct);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

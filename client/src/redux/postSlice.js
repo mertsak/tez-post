@@ -6,7 +6,12 @@ import {
   deleteCategoryItem,
 } from "./services/categoryService";
 
-import { getProductsItems, addProductItem } from "./services/productService";
+import {
+  getProductsItems,
+  addProductItem,
+  editProductItem,
+  deleteProductItem,
+} from "./services/productService";
 
 export const postSlice = createSlice({
   name: "post",
@@ -49,6 +54,19 @@ export const postSlice = createSlice({
 
     builder.addCase(addProductItem.fulfilled, (state, action) => {
       state.productsItems = [...state.productsItems, action.payload];
+    });
+
+    builder.addCase(editProductItem.fulfilled, (state, action) => {
+      state.productsItems = state.productsItems.map((item) =>
+        item._id === action.payload._id ? action.payload : item
+      );
+    });
+
+    builder.addCase(deleteProductItem.fulfilled, (state, action) => {
+      console.log(action.payload);
+      state.productsItems = state.productsItems.filter(
+        (item) => item._id !== action.payload._id
+      );
     });
   },
 });

@@ -24,7 +24,37 @@ export const addProductItem = createAsyncThunk(
         values
       );
 
-      console.log(response)
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const editProductItem = createAsyncThunk(
+  "products/editProductItem",
+  async (values) => {
+    try {
+      const response = await axios.put(
+        `${process.env.REACT_APP_BASE_URL}/products/updateProduct`,
+        values
+      );
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const deleteProductItem = createAsyncThunk(
+  "products/deleteProductItem",
+  async (_id) => {
+    try {
+      const response = await axios.delete(
+        `${process.env.REACT_APP_BASE_URL}/products/deleteProduct`,
+        { data: { _id } }
+      );
       return response.data;
     } catch (error) {
       console.log(error);

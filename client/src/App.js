@@ -9,6 +9,7 @@ import CustomerPage from "./pages/CustomerPage.jsx";
 import StatisticPage from "./pages/StatisticPage.jsx";
 import RegisterPage from "./pages/auth/RegisterPage.jsx";
 import LoginPage from "./pages/auth/LoginPage.jsx";
+import ProductPage from "./pages/ProductPage.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -35,6 +36,10 @@ function App() {
         {
           path: "/statisticPage",
           element: <StatisticPage />,
+        },
+        {
+          path: "/productPage",
+          element: <ProductPage />,
         },
       ],
     },
