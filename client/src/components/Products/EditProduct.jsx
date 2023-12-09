@@ -9,6 +9,7 @@ import {
   deleteProductItem,
 } from "../../redux/services/productService";
 import { getProductsItems } from "../../redux/services/productService";
+import { getCategoriesItems } from "../../redux/services/categoryService";
 
 const EditProduct = () => {
   const [form] = Form.useForm();
@@ -17,8 +18,10 @@ const EditProduct = () => {
   const { productsItems, categoriesItems } = useSelector((state) => state.post);
   const [editingItem, setEditingItem] = useState({});
 
+
   useEffect(() => {
     dispatch(getProductsItems());
+    dispatch(getCategoriesItems());
   }, [dispatch]);
 
   // Add Modal
