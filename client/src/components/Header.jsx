@@ -15,7 +15,7 @@ import { setSideCartTotal } from "../redux/postSlice";
 import { useLocation } from "react-router-dom";
 
 const Header = () => {
-  const sideCartTotal = useSelector((state) => state.post.sideCartTotal);
+  const { sideCartTotal, cartItems } = useSelector((state) => state.post);
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -38,7 +38,11 @@ const Header = () => {
         </div>
 
         {/* BASKET */}
-        <Badge count={1} offset={[-5, 2]} className="md:hidden flex">
+        <Badge
+          count={cartItems.length}
+          offset={[-5, 2]}
+          className="md:hidden flex"
+        >
           <Link to="/basketPage" className="menu-link">
             <ShoppingCartOutlined className="text-2xl" />
             <span className="text-[10px]">Basket</span>
@@ -52,7 +56,11 @@ const Header = () => {
             <span className="text-[10px] md:text-xs">Home</span>
           </Link>
 
-          <Badge count={1} offset={[-5, 2]} className="md:flex hidden">
+          <Badge
+            count={cartItems.length}
+            offset={[-5, 2]}
+            className="md:flex hidden"
+          >
             <Link to="/basketPage" className="menu-link">
               <ShoppingCartOutlined className="text-xl md:text-2xl" />
               <span className="text-[10px] md:text-xs">Basket</span>

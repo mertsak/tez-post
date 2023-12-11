@@ -1,10 +1,15 @@
-import { Card, Form } from "antd";
+import { Card, Form, Button } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { getProductsItems } from "../../redux/services/productService";
-import { PlusOutlined, EditOutlined } from "@ant-design/icons";
+import { PlusOutlined, EditOutlined, MinusOutlined } from "@ant-design/icons";
 import AddProdModal from "./AddProdModal";
 import { useNavigate } from "react-router-dom";
+import {
+  addProduct,
+  incrementItem,
+  decrementItem,
+} from "../../redux/postSlice";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -31,6 +36,27 @@ const Products = () => {
     dispatch(getProductsItems());
   }, [dispatch]);
 
+  const handleClick = (item) => {
+    dispatch(
+      addProduct({
+        ...item,
+        quantity: 1,
+      })
+    );
+
+    console.log("test");
+  };
+
+  const handleIncrement = (item, e) => {
+    e.stopPropagation();
+    dispatch(incrementItem(item));
+  };
+
+  const handleDecrement = (item, e) => {
+    e.stopPropagation();
+    dispatch(decrementItem(item));
+  };
+
   return (
     <div className="products grid grid-cols-products-fill gap-4">
       {productsItems?.map((item) => {
@@ -38,6 +64,7 @@ const Products = () => {
           <Card
             hoverable
             className="w-full"
+            onClick={() => handleClick(item)}
             cover={
               <img
                 alt={item.title}
@@ -50,6 +77,28 @@ const Products = () => {
             <div className="flex flex-col justify-center items-start gap-1">
               <span className="text-xl font-semibold">{item.title}</span>
               <span className="text-base font-medium">${item.price}</span>
+            </div>
+
+            <div className="flex justify-center items-center gap-4 mt-3">
+              <Button
+                type="primary"
+                size="large"
+                shape="circle"
+                className="w-full flex items-center justify-center rounded-full"
+                icon={<MinusOutlined />}
+                onClick={(e) => handleDecrement(item, e)}
+              />
+
+              <span className="font-bold text-2xl">1</span>
+
+              <Button
+                type="primary"
+                size="large"
+                shape="circle"
+                className="w-full flex items-center justify-center rounded-full"
+                icon={<PlusOutlined />}
+                onClick={(e) => handleIncrement(item, e)}
+              />
             </div>
           </Card>
         );

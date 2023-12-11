@@ -12,7 +12,7 @@ const HomePageInner = () => {
 
   return (
     <>
-      <div className="home px-4 flex md:flex-row flex-col md:justify-center  md:items-start gap-8 md:h-[calc(100vh-108px)] relative">
+      <div className="home px-4 flex md:flex-row flex-col md:justify-center md:items-start gap-8 md:h-[calc(100vh-108px)] relative">
         {/* CATEGORIES */}
         <div className="categories h-full overflow-auto">
           <Categories />
