@@ -57,7 +57,11 @@ const Header = () => {
           </Link>
 
           <Badge
-            count={cartItems.length}
+            count={
+              cartItems.length > 0
+                ? cartItems.reduce((acc, item) => acc + item.quantity, 0)
+                : 0
+            }
             offset={[-5, 2]}
             className="md:flex hidden"
           >

@@ -17,7 +17,7 @@ const Products = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [form] = Form.useForm();
 
-  const { productsItems } = useSelector((state) => state.post);
+  const { productsItems, cartItems } = useSelector((state) => state.post);
 
   // Add Modal
   const showAddModal = () => {
@@ -43,8 +43,6 @@ const Products = () => {
         quantity: 1,
       })
     );
-
-    console.log("test");
   };
 
   const handleIncrement = (item, e) => {
@@ -89,7 +87,17 @@ const Products = () => {
                 onClick={(e) => handleDecrement(item, e)}
               />
 
-              <span className="font-bold text-2xl">1</span>
+              {cartItems.length > 0 &&
+              cartItems.find((cartItem) => cartItem._id === item._id) ? (
+                <span className="text-xl font-semibold">
+                  {
+                    cartItems.find((cartItem) => cartItem._id === item._id)
+                      .quantity
+                  }
+                </span>
+              ) : (
+                <span className="text-xl font-semibold">0</span>
+              )}
 
               <Button
                 type="primary"

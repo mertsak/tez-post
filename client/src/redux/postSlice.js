@@ -72,12 +72,14 @@ export const postSlice = createSlice({
         (item) => item._id === action.payload._id
       );
 
-      if (findCartItem.quantity === 1) {
-        state.cartItems = state.cartItems.filter(
-          (item) => item._id !== action.payload._id
-        );
-      } else {
-        findCartItem.quantity -= 1;
+      if (findCartItem) {
+        if (findCartItem.quantity === 1) {
+          state.cartItems = state.cartItems.filter(
+            (item) => item._id !== action.payload._id
+          );
+        } else {
+          findCartItem.quantity -= 1;
+        }
       }
 
       state.total -= action.payload.price;

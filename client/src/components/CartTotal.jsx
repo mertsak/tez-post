@@ -7,6 +7,8 @@ const CartTotal = () => {
   const dispatch = useDispatch();
   const { cartItems, total, tax } = useSelector((state) => state.post);
 
+  console.log(cartItems.length);
+
   return (
     <div className="cart h-full flex flex-col md:max-h-[calc(100vh-108px)]">
       <h2 className="bg-blue-700 text-center py-4 text-white font-bold tracking-wide">
@@ -14,42 +16,50 @@ const CartTotal = () => {
       </h2>
 
       <ul className="cart-items px-2 flex flex-col gap-y-2 overflow-y-auto">
-        {cartItems.map((item) => {
-          return (
-            <li
-              className="cart-item flex justify-between items-center mt-2"
-              key={item._id}
-            >
-              <div className="flex items-center">
-                <img
-                  src={item.img}
-                  alt={item.title}
-                  className="w-16 h-16 object-cover rounded-md"
-                />
+        {cartItems.length !== 0 ? (
+          <>
+            {cartItems?.map((item) => {
+              return (
+                <li
+                  className="cart-item flex justify-between items-center mt-2"
+                  key={item._id}
+                >
+                  <div className="flex items-center">
+                    <img
+                      src={item.img}
+                      alt={item.title}
+                      className="w-16 h-16 object-cover rounded-md"
+                    />
 
-                <div className="flex flex-col ml-2">
-                  <b>{item.title} </b>
-                  <div>
-                    <span>
-                      {item.price}$ x {item.quantity} =
-                    </span>
-                    <span>
-                      &nbsp; {(item.price * item.quantity).toFixed(2)}$
-                    </span>
+                    <div className="flex flex-col ml-2">
+                      <b>{item.title} </b>
+                      <div>
+                        <span>
+                          {item.price}$ x {item.quantity} =
+                        </span>
+                        <span>
+                          &nbsp; {(item.price * item.quantity).toFixed(2)}$
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
 
-              <Button
-                type="primary"
-                danger
-                size="middle"
-                icon={<CloseOutlined />}
-                onClick={() => dispatch(deleteProduct(item))}
-              />
-            </li>
-          );
-        })}
+                  <Button
+                    type="primary"
+                    danger
+                    size="middle"
+                    icon={<CloseOutlined />}
+                    onClick={() => dispatch(deleteProduct(item))}
+                  />
+                </li>
+              );
+            })}
+          </>
+        ) : (
+          <span className="flex-center mt-4">
+            <b>There is no item in cart</b>
+          </span>
+        )}
       </ul>
 
       <div className="cart-totals mt-auto">
