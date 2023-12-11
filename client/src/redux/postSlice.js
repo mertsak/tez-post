@@ -84,6 +84,11 @@ export const postSlice = createSlice({
 
       state.total -= action.payload.price;
     },
+
+    resetCart: (state) => {
+      state.cartItems = [];
+      state.total = 0;
+    },
   },
   extraReducers: (builder) => {
     // Categories
@@ -137,6 +142,7 @@ export const {
   deleteProduct,
   incrementItem,
   decrementItem,
+  resetCart,
 } = postSlice.actions;
 
 export default postSlice.reducer;

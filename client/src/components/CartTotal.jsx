@@ -1,13 +1,18 @@
-import { Button } from "antd";
+import { Button, message } from "antd";
 import { ClearOutlined, CloseOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteProduct } from "../redux/postSlice";
+import { deleteProduct, resetCart } from "../redux/postSlice";
 
 const CartTotal = () => {
   const dispatch = useDispatch();
   const { cartItems, total, tax } = useSelector((state) => state.post);
 
-  console.log(cartItems.length);
+  const handleResetCart = () => {
+    if (window.confirm("Are you sure you want to delete all items?")) {
+      dispatch(resetCart());
+      message.error("Cart cleared");
+    }
+  };
 
   return (
     <div className="cart h-full flex flex-col md:max-h-[calc(100vh-108px)]">
@@ -49,7 +54,16 @@ const CartTotal = () => {
                     danger
                     size="middle"
                     icon={<CloseOutlined />}
-                    onClick={() => dispatch(deleteProduct(item))}
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          "Are you sure you want to delete this item?"
+                        )
+                      ) {
+                        dispatch(deleteProduct(item));
+                        message.error("Item removed from cart");
+                      }
+                    }}
                   />
                 </li>
               );
@@ -93,6 +107,7 @@ const CartTotal = () => {
             size="large"
             icon={<ClearOutlined />}
             className="w-full mt-2"
+            onClick={() => handleResetCart()}
           >
             Clear
           </Button>

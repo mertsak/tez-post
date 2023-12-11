@@ -1,4 +1,4 @@
-import { Card, Form, Button } from "antd";
+import { Card, Form, Button, message } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { getProductsItems } from "../../redux/services/productService";
@@ -43,16 +43,21 @@ const Products = () => {
         quantity: 1,
       })
     );
+    message.success("Item added to cart");
   };
 
   const handleIncrement = (item, e) => {
     e.stopPropagation();
     dispatch(incrementItem(item));
+
+    message.success("Item added to cart");
   };
 
   const handleDecrement = (item, e) => {
     e.stopPropagation();
     dispatch(decrementItem(item));
+
+    message.error("Item removed from cart");
   };
 
   return (
@@ -85,6 +90,12 @@ const Products = () => {
                 className="w-full flex items-center justify-center rounded-full"
                 icon={<MinusOutlined />}
                 onClick={(e) => handleDecrement(item, e)}
+                disabled={
+                  cartItems.length > 0 &&
+                  cartItems.find((cartItem) => cartItem._id === item._id)
+                    ? false
+                    : true
+                }
               />
 
               {cartItems.length > 0 &&
