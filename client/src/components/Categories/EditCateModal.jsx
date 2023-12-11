@@ -57,6 +57,7 @@ const EditCateModalComponent = ({
             shape="circle"
             icon={<SaveOutlined />}
             htmlType="submit"
+            disabled={editingRow._id === record._id ? false : true}
           />
 
           <Button
@@ -85,7 +86,7 @@ const EditCateModalComponent = ({
     try {
       if (window.confirm("Are you sure you want to delete this category?")) {
         dispatch(deleteCategoryItem(id));
-        message.success("Category Deleted Successfully");
+        message.error("Category Deleted Successfully");
       }
     } catch (error) {
       message.error("Something went wrong");
