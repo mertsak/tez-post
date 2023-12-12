@@ -65,7 +65,7 @@ const BillTable = ({ showModal, setPrintModalData }) => {
       pagination={false}
       rowKey={"_id"}
       className="w-3/4 mx-auto"
-      scroll={{ x: 1000 }}
+      scroll={{ x: 1000 , y: 600 }}
     />
   );
 };

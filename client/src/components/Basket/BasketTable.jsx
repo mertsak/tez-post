@@ -162,7 +162,7 @@ const BasketTable = () => {
       bordered
       pagination={false}
       className="w-3/4 mx-auto"
-      scroll={{ x: 1000 }}
+      scroll={{ x: 1000 , y: 600 }}
       rowKey={"_id"}
     />
   );

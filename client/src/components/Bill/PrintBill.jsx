@@ -1,6 +1,14 @@
 import { Modal, Button } from "antd";
+import { useReactToPrint } from "react-to-print";
+import React, { useRef } from "react";
 
 const PrintBill = ({ isModalOpen, handleOk, handleCancel, printModalData }) => {
+  const componentRef = useRef();
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
   return (
     <Modal
       width={900}
@@ -15,7 +23,7 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel, printModalData }) => {
         },
       ]}
     >
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-black" ref={componentRef}>
         <div className="max-w-5xl mx-auto bg-white px-4 sm:px-6">
           <article className="overflow-hidden">
             <div className="logo my-6">
@@ -25,10 +33,7 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel, printModalData }) => {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
                 <div className="text-md text-slate-500">
                   <p className="font-bold text-slate-700">Fatura Detayı:</p>
-                  <p>Unwrapped</p>
-                  <p> Fake Street 123</p>
-                  <p> San Javier </p>
-                  <p> CA 1234</p>
+                  <p>Table Number - {printModalData?.tableNumber}</p>
                 </div>
 
                 <div className="text-md text-slate-500">
@@ -42,14 +47,20 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel, printModalData }) => {
                 <div className="text-md text-slate-500">
                   <div>
                     <p className="font-bold text-slate-700">Fatura numarası:</p>
-                    <p>00072</p>
+
+                    <p>
+                      000
+                      <span>{Math.floor(Math.random() * 100)}</span>
+                    </p>
                   </div>
                   <div>
                     <p className="font-bold text-slate-700 mt-2">
                       Veriliş Tarihi:
                     </p>
                     <p>
-                      {/* {new Date(customer.createdAt).toLocaleDateString("tr-TR")} */}
+                      {new Date(printModalData?.createdAt).toLocaleDateString(
+                        "tr-TR"
+                      )}
                     </p>
                   </div>
                 </div>
@@ -62,7 +73,9 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel, printModalData }) => {
                   <div>
                     <p className="font-bold text-slate-700 mt-2">Vade:</p>
                     <p>
-                      {/* {new Date(customer.createdAt).toLocaleDateString("tr-TR")} */}
+                      {new Date(printModalData?.createdAt).toLocaleDateString(
+                        "tr-TR"
+                      )}
                     </p>
                   </div>
                 </div>
@@ -230,7 +243,7 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel, printModalData }) => {
       </section>
 
       <div className="flex justify-end mt-4">
-        <Button type="primary" size="large">
+        <Button onClick={handlePrint} type="primary" size="large">
           Yazdır
         </Button>
       </div>
