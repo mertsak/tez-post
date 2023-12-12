@@ -18,7 +18,6 @@ const EditProduct = () => {
   const { productsItems, categoriesItems } = useSelector((state) => state.post);
   const [editingItem, setEditingItem] = useState({});
 
-
   useEffect(() => {
     dispatch(getProductsItems());
     dispatch(getCategoriesItems());
@@ -122,7 +121,6 @@ const EditProduct = () => {
     try {
       dispatch(editProductItem({ ...values, _id: editingItem._id }));
       message.success("Category Edited Successfully");
-      setEditingItem({});
     } catch (error) {
       message.error("Something went wrong");
       console.log(error);
