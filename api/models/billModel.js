@@ -2,13 +2,8 @@ import mongoose from "mongoose";
 
 const BillSchema = new mongoose.Schema(
   {
-    customerName: {
-      type: String,
-      required: true,
-    },
-
-    customerPhoneNumber: {
-      type: String,
+    tableNumber: {
+      type: Number,
       required: true,
     },
 

@@ -2,9 +2,11 @@ import { Button, message } from "antd";
 import { ClearOutlined, CloseOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteProduct, resetCart } from "../redux/postSlice";
+import { useNavigate } from "react-router-dom";
 
 const CartTotal = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { cartItems, total, tax } = useSelector((state) => state.post);
 
   const handleResetCart = () => {
@@ -80,7 +82,7 @@ const CartTotal = () => {
         <div className="border">
           <div className="flex justify-between p-2">
             <b>Subtotal:</b>
-            <span>{total.toFixed(2)}$</span>
+            <span>{(total - total * tax).toFixed(2)}$</span>
           </div>
 
           <div className="flex justify-between p-2">
@@ -97,7 +99,12 @@ const CartTotal = () => {
         </div>
 
         <div className="p-4">
-          <Button type="primary" size="large" className="w-full mt-2">
+          <Button
+            onClick={() => navigate("/basketPage")}
+            type="primary"
+            size="large"
+            className="w-full mt-2"
+          >
             Complete the order
           </Button>
 

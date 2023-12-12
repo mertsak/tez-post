@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-import BillCard from "../components/Bill/BillCard";
 import BillTable from "../components/Bill/BillTable";
 import PrintBill from "../components/Bill/PrintBill";
 
 const BillsPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [printModalData, setPrintModalData] = useState();
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -23,16 +23,13 @@ const BillsPage = () => {
     <div className="px-4">
       <h2 className="text-4xl font-semibold text-center mb-6">Bill</h2>
 
-      <BillTable />
-
-      <div className="cart-total flex justify-end mt-4">
-        <BillCard showModal={showModal} />
-      </div>
+      <BillTable showModal={showModal} setPrintModalData={setPrintModalData} />
 
       <PrintBill
         isModalOpen={isModalOpen}
         handleOk={handleOk}
         handleCancel={handleCancel}
+        printModalData={printModalData}
       />
     </div>
   );

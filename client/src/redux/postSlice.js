@@ -13,6 +13,8 @@ import {
   deleteProductItem,
 } from "./services/productService";
 
+import { getBillsItems, addBillItem } from "./services/billService";
+
 export const postSlice = createSlice({
   name: "post",
   initialState: {
@@ -20,6 +22,7 @@ export const postSlice = createSlice({
     categoriesItems: [],
     productsItems: [],
     cartItems: [],
+    billsItems: [],
     total: 0,
     tax: 0.08,
   },
@@ -132,6 +135,15 @@ export const postSlice = createSlice({
       state.productsItems = state.productsItems.filter(
         (item) => item._id !== action.payload._id
       );
+    });
+
+    // Bills
+    builder.addCase(getBillsItems.fulfilled, (state, action) => {
+      state.billsItems = action.payload;
+    });
+
+    builder.addCase(addBillItem.fulfilled, (state, action) => {
+      state.billsItems = [...state.billsItems, action.payload];
     });
   },
 });

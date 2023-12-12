@@ -1,6 +1,6 @@
 import { Modal, Button } from "antd";
 
-const PrintBill = ({ isModalOpen, handleOk, handleCancel }) => {
+const PrintBill = ({ isModalOpen, handleOk, handleCancel, printModalData }) => {
   return (
     <Modal
       width={900}
@@ -42,13 +42,15 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel }) => {
                 <div className="text-md text-slate-500">
                   <div>
                     <p className="font-bold text-slate-700">Fatura numarası:</p>
-                    <p>00041</p>
+                    <p>00072</p>
                   </div>
                   <div>
                     <p className="font-bold text-slate-700 mt-2">
                       Veriliş Tarihi:
                     </p>
-                    <p>2022-11-21</p>
+                    <p>
+                      {/* {new Date(customer.createdAt).toLocaleDateString("tr-TR")} */}
+                    </p>
                   </div>
                 </div>
 
@@ -59,7 +61,9 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel }) => {
                   </div>
                   <div>
                     <p className="font-bold text-slate-700 mt-2">Vade:</p>
-                    <p>2023-11-21</p>
+                    <p>
+                      {/* {new Date(customer.createdAt).toLocaleDateString("tr-TR")} */}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -101,93 +105,29 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-b border-slate-200">
-                    <td className="py-4 ">
-                      <img
-                        src="https://i.lezzet.com.tr/images-xxlarge-secondary/elma-nasil-yenir-221135ca-f383-474c-a4f5-ad02a45db978.jpg"
-                        alt=""
-                        className="w-12 h-12 object-cover rounded-md"
-                      />
-                    </td>
-                    <td className="py-4">
-                      <span className="font-medium">Şalgam</span>
-                    </td>
-                    <td className="py-4 text-center">
-                      <span>5₺</span>
-                    </td>
-                    <td className="py-4 text-center">
-                      <span>1</span>
-                    </td>
-                    <td className="py-4 text-end">
-                      <span>5.00₺</span>
-                    </td>
-                  </tr>
-
-                  <tr className="border-b border-slate-200">
-                    <td className="py-4 ">
-                      <img
-                        src="https://i.lezzet.com.tr/images-xxlarge-secondary/elma-nasil-yenir-221135ca-f383-474c-a4f5-ad02a45db978.jpg"
-                        alt=""
-                        className="w-12 h-12 object-cover rounded-md"
-                      />
-                    </td>
-                    <td className="py-4">
-                      <span className="font-medium">Şalgam</span>
-                    </td>
-                    <td className="py-4 text-center">
-                      <span>5₺</span>
-                    </td>
-                    <td className="py-4 text-center">
-                      <span>1</span>
-                    </td>
-                    <td className="py-4 text-end">
-                      <span>5.00₺</span>
-                    </td>
-                  </tr>
-
-                  <tr className="border-b border-slate-200">
-                    <td className="py-4 ">
-                      <img
-                        src="https://i.lezzet.com.tr/images-xxlarge-secondary/elma-nasil-yenir-221135ca-f383-474c-a4f5-ad02a45db978.jpg"
-                        alt=""
-                        className="w-12 h-12 object-cover rounded-md"
-                      />
-                    </td>
-                    <td className="py-4">
-                      <span className="font-medium">Şalgam</span>
-                    </td>
-                    <td className="py-4 text-center">
-                      <span>5₺</span>
-                    </td>
-                    <td className="py-4 text-center">
-                      <span>1</span>
-                    </td>
-                    <td className="py-4 text-end">
-                      <span>5.00₺</span>
-                    </td>
-                  </tr>
-
-                  <tr className="border-b border-slate-200">
-                    <td className="py-4 ">
-                      <img
-                        src="https://i.lezzet.com.tr/images-xxlarge-secondary/elma-nasil-yenir-221135ca-f383-474c-a4f5-ad02a45db978.jpg"
-                        alt=""
-                        className="w-12 h-12 object-cover rounded-md"
-                      />
-                    </td>
-                    <td className="py-4">
-                      <span className="font-medium">Şalgam</span>
-                    </td>
-                    <td className="py-4 text-center">
-                      <span>5₺</span>
-                    </td>
-                    <td className="py-4 text-center">
-                      <span>1</span>
-                    </td>
-                    <td className="py-4 text-end">
-                      <span>5.00₺</span>
-                    </td>
-                  </tr>
+                  {printModalData?.cartItems?.map((item) => (
+                    <tr className="border-b border-slate-200" key={item._id}>
+                      <td className="py-4 ">
+                        <img
+                          src={item.img}
+                          alt=""
+                          className="w-12 h-12 object-cover rounded-md"
+                        />
+                      </td>
+                      <td className="py-4">
+                        <span className="font-medium">{item.title}</span>
+                      </td>
+                      <td className="py-4 text-center">
+                        <span>{item.price}₺</span>
+                      </td>
+                      <td className="py-4 text-center">
+                        <span>{item.quantity}</span>
+                      </td>
+                      <td className="py-4 text-end">
+                        <span>{item.price * item.quantity}₺</span>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
                 <tfoot>
                   <tr>
@@ -197,7 +137,7 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel }) => {
                       scope="row"
                     >
                       <span className="font-bold text-slate-700">
-                        Ara Toplam :
+                        Subtotal :
                       </span>
                     </th>
                     <th
@@ -205,29 +145,16 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel }) => {
                       scope="row"
                       colSpan="4"
                     >
-                      <p className="font-bold text-slate-700">Ara Toplam :</p>
+                      <p className="font-bold text-slate-700">Subtotal :</p>
                     </th>
                     <th className="text-right pt-4" scope="row">
-                      <span className="font-normal text-slate-700">61₺</span>
-                    </th>
-                  </tr>
-                  <tr>
-                    <th
-                      className="text-right pt-4 sm:table-cell hidden"
-                      colSpan="4"
-                      scope="row"
-                    >
-                      <span className="font-bold text-slate-700">KDV :</span>
-                    </th>
-                    <th
-                      className="text-left pt-4 sm:hidden"
-                      scope="row"
-                      colSpan="4"
-                    >
-                      <p className="font-bold text-slate-700">KDV :</p>
-                    </th>
-                    <th className="text-right pt-4" scope="row">
-                      <span className="font-bold text-red-600">+4.88₺</span>
+                      <span className="font-normal text-slate-700">
+                        {(
+                          printModalData?.subTotal -
+                          printModalData?.subTotal * printModalData?.tax
+                        ).toFixed(2)}
+                        $
+                      </span>
                     </th>
                   </tr>
                   <tr>
@@ -237,7 +164,7 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel }) => {
                       scope="row"
                     >
                       <span className="font-bold text-slate-700">
-                        Genel Toplam :
+                        VAT total %8 :
                       </span>
                     </th>
                     <th
@@ -245,10 +172,39 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel }) => {
                       scope="row"
                       colSpan="4"
                     >
-                      <p className="font-bold text-slate-700">Genel Toplam :</p>
+                      <p className="font-bold text-slate-700">VAT total %8 :</p>
                     </th>
                     <th className="text-right pt-4" scope="row">
-                      <span className="font-normal text-slate-700">65.88₺</span>
+                      <span className="font-bold text-red-600">
+                        +
+                        {(
+                          printModalData?.subTotal * printModalData?.tax
+                        ).toFixed(2)}
+                        $
+                      </span>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th
+                      className="text-right pt-4 sm:table-cell hidden"
+                      colSpan="4"
+                      scope="row"
+                    >
+                      <span className="font-bold text-slate-700">
+                        Grand total :
+                      </span>
+                    </th>
+                    <th
+                      className="text-left pt-4 sm:hidden"
+                      scope="row"
+                      colSpan="4"
+                    >
+                      <p className="font-bold text-slate-700">Grand total :</p>
+                    </th>
+                    <th className="text-right pt-4" scope="row">
+                      <span className="font-normal text-slate-700">
+                        {printModalData?.subTotal.toFixed(2)}$
+                      </span>
                     </th>
                   </tr>
                 </tfoot>
