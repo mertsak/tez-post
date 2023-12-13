@@ -70,7 +70,15 @@ const CustomerTable = () => {
   ];
 
   return (
-    <Table dataSource={data} columns={columns} bordered pagination={false} />
+    <Table
+      dataSource={data}
+      columns={columns}
+      bordered
+      pagination={false}
+      className="w-3/4 mx-auto"
+      scroll={{ x: 1000, y: 600 }}
+      rowKey={"_id"}
+    />
   );
 };
 

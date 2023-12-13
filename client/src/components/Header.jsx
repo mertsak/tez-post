@@ -76,9 +76,9 @@ const Header = () => {
             <span className="text-[10px] md:text-xs">Bill</span>
           </Link>
 
-          <Link to="/customerPage" className="menu-link">
+          <Link to="/employeesPage" className="menu-link">
             <UserOutlined className="text-xl md:text-2xl" />
-            <span className="text-[10px] md:text-xs">Customers</span>
+            <span className="text-[10px] md:text-xs">Employees</span>
           </Link>
 
           <Link to="/statisticPage" className="menu-link">

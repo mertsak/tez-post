@@ -13,6 +13,10 @@ import {
 } from "chart.js";
 import { Pie, Line } from "react-chartjs-2";
 import faker from "faker";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getBillsItems } from "../redux/services/billService";
+import { getProductsItems } from "../redux/services/productService";
 
 ChartJS.register(
   CategoryScale,
@@ -26,62 +30,90 @@ ChartJS.register(
   Filler
 );
 
-export const data2 = {
-  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-  datasets: [
-    {
-      label: "# of Votes",
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        "rgba(255, 99, 132, 0.2)",
-        "rgba(54, 162, 235, 0.2)",
-        "rgba(255, 206, 86, 0.2)",
-        "rgba(75, 192, 192, 0.2)",
-        "rgba(153, 102, 255, 0.2)",
-        "rgba(255, 159, 64, 0.2)",
-      ],
-      borderColor: [
-        "rgba(255, 99, 132, 1)",
-        "rgba(54, 162, 235, 1)",
-        "rgba(255, 206, 86, 1)",
-        "rgba(75, 192, 192, 1)",
-        "rgba(153, 102, 255, 1)",
-        "rgba(255, 159, 64, 1)",
-      ],
-      borderWidth: 1,
-    },
-  ],
+const generateData = (billsItems, totalCashAmount, totalCreditCardAmount) => {
+  return {
+    labels: [...new Set(billsItems.map((item) => item.paymentMethod))],
+    datasets: [
+      {
+        label: "# of Votes",
+        data: [totalCashAmount, totalCreditCardAmount],
+        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
+        borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
+        borderWidth: 1,
+      },
+    ],
+  };
 };
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
-    },
-    title: {
-      display: true,
-      text: "Chart.js Line Chart",
-    },
-  },
-};
-
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
+const labels = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
 export const data = {
   labels: labels,
   datasets: [
     {
       fill: true,
-      label: "Dataset 2",
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      borderColor: "rgb(53, 162, 235)",
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
+      label: "Sales per month",
+      data: labels.map(() => faker.datatype.number({ min: 0, max: 2000 })),
+      backgroundColor: "rgba(54, 162, 235, 0.2)",
+      borderColor: "rgba(54, 162, 235, 1)",
     },
   ],
 };
 
 const StatisticPage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProductsItems());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getBillsItems());
+  }, [dispatch]);
+
+  const { billsItems, productsItems } = useSelector((state) => state.post);
+
+  const totalCashAmount = billsItems.reduce((total, item) => {
+    if (item.paymentMethod === "Cash") {
+      return total + item.totalAmount;
+    }
+    return total;
+  }, 0);
+
+  const totalCreditCardAmount = billsItems.reduce((total, item) => {
+    if (item.paymentMethod === "Credit Card") {
+      return total + item.totalAmount;
+    }
+    return total;
+  }, 0);
+
+  const data2 = generateData(
+    billsItems,
+    totalCashAmount,
+    totalCreditCardAmount
+  );
+
+  const totalAmonut = billsItems?.reduce((acc, item) => {
+    return acc + item.totalAmount;
+  }, 0);
+
+  const totalSale = billsItems?.length;
+
+  const totalProduct = productsItems?.length;
+
   return (
     <>
       <div className="px-4 md:pb-10 pb-20">
@@ -99,30 +131,30 @@ const StatisticPage = () => {
             {/* static card */}
 
             <StatisticCard
-              title={"Toplam Müşteri"}
-              amount={"10"}
+              title={"Masa Sayısı"}
+              amount={"50"}
               img={"images/user.png"}
             />
             <StatisticCard
               title={"Toplam Kazanç"}
-              amount={"1000"}
+              amount={`${totalAmonut.toFixed(2)}$`}
               img={"images/money.png"}
             />
             <StatisticCard
               title={"Toplam Satış"}
-              amount={"10000"}
+              amount={totalSale}
               img={"images/sale.png"}
             />
             <StatisticCard
               title={"Toplam Ürün"}
-              amount={"100"}
+              amount={totalProduct}
               img={"images/product.png"}
             />
           </div>
 
           <div className="flex justify-between items-center gap-10 lg:flex-row flex-col">
             <div className="w-full h-full flex justify-center items-center">
-              <Line options={options} data={data} />
+              <Line data={data} />
             </div>
 
             <div className="w-full h-full flex justify-center items-center  max-h-[500px]">

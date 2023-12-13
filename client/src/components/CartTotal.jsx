@@ -106,6 +106,7 @@ const CartTotal = () => {
             type="primary"
             size="large"
             className="w-full mt-2"
+            disabled={cartItems.length > 0 ? false : true}
           >
             Complete the order
           </Button>
@@ -117,6 +118,7 @@ const CartTotal = () => {
             icon={<ClearOutlined />}
             className="w-full mt-2"
             onClick={() => handleResetCart()}
+            disabled={cartItems.length > 0 ? false : true}
           >
             Clear
           </Button>

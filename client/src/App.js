@@ -5,7 +5,7 @@ import HomePage from "./pages/HomePage.jsx";
 import BasketPage from "./pages/BasketPage.jsx";
 import HomePageInner from "./pages/HomePageInner.jsx";
 import BillPage from "./pages/BillPage.jsx";
-import CustomerPage from "./pages/CustomerPage.jsx";
+import EmployeesPage from "./pages/EmployeesPage.jsx";
 import StatisticPage from "./pages/StatisticPage.jsx";
 import RegisterPage from "./pages/auth/RegisterPage.jsx";
 import LoginPage from "./pages/auth/LoginPage.jsx";
@@ -30,8 +30,8 @@ function App() {
           element: <BillPage />,
         },
         {
-          path: "/customerPage",
-          element: <CustomerPage />,
+          path: "/employeesPage",
+          element: <EmployeesPage />,
         },
         {
           path: "/statisticPage",

@@ -4,8 +4,6 @@ import { useSelector } from "react-redux";
 const BasketCard = ({ showModal }) => {
   const { total, tax } = useSelector((state) => state.post);
 
-  console.log(total);
-
   return (
     <Card className="w-72">
       <div className="flex justify-between items-center">
@@ -30,6 +28,7 @@ const BasketCard = ({ showModal }) => {
         className="w-full mt-4"
         size="large"
         type="primary"
+        disabled={total === 0 ? true : false}
       >
         Pay
       </Button>

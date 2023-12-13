@@ -2,13 +2,13 @@ import { Modal, Form, Select, Card, Button, message } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { addBillItem } from "../../redux/services/billService";
 import { resetCart } from "../../redux/postSlice";
+import { useNavigate } from "react-router-dom";
 
 const CreateBill = ({ isModalOpen, handleOk, handleCancel }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { total, tax, cartItems, billsItems } = useSelector(
-    (state) => state.post
-  );
+  const { total, tax, cartItems } = useSelector((state) => state.post);
 
   const onFinish = (values) => {
     dispatch(
@@ -24,8 +24,6 @@ const CreateBill = ({ isModalOpen, handleOk, handleCancel }) => {
     message.success("Bill created successfully");
     dispatch(resetCart());
   };
-
-  console.log(billsItems);
 
   return (
     <Modal
