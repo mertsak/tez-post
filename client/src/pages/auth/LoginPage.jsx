@@ -1,15 +1,39 @@
-import { Button, Form, Input, Carousel, Checkbox } from "antd";
+import { Button, Form, Input, Carousel, Checkbox, message } from "antd";
 import { Link } from "react-router-dom";
 import AuthCarousel from "../../components/auth/AuthCarousel";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../redux/services/authService";
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const onFinish = async (values) => {
+    try {
+      await dispatch(loginUser(values)).unwrap();
+
+      message.success("Your login is successful");
+
+      navigate("/");
+    } catch (error) {
+      message.error(error.message);
+    }
+  };
+
   return (
     <div className="h-screen">
       <div className="flex justify-between h-full">
         <div className="xl:px-20 px-10 w-full flex flex-col h-full justify-center relative bg-gray-50">
           <h1 className="text-center text-5xl font-bold mb-6">LOGO</h1>
-          <Form layout="vertical">
+          <Form
+            layout="vertical"
+            onFinish={onFinish}
+            initialValues={{
+              remember: false,
+            }}
+          >
             <Form.Item
               hasFeedback
               label="E-mail"
@@ -29,7 +53,7 @@ const LoginPage = () => {
                 prefix={
                   <MailOutlined className="site-form-item-icon text-gray-400" />
                 }
-                placeholder="Username"
+                placeholder="Email"
               />
             </Form.Item>
 
@@ -42,6 +66,15 @@ const LoginPage = () => {
                   required: true,
                   message: "Şifre Alanı Boş Bırakılamaz!",
                 },
+                {
+                  min: 6,
+                  message: "password must be at least 6 characters!",
+                },
+
+                {
+                  max: 20,
+                  message: "password must be at most 20 characters!",
+                },
               ]}
             >
               <Input.Password
@@ -52,7 +85,7 @@ const LoginPage = () => {
               />
             </Form.Item>
 
-            <Form.Item>
+            <Form.Item name={"remember"} valuePropName="checked">
               <div className="flex justify-between items-center">
                 <Checkbox>Remember Me</Checkbox>
                 <Link>Forgot Password?</Link>

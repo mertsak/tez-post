@@ -17,7 +17,9 @@ const Products = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [form] = Form.useForm();
 
-  const { productsItems, cartItems } = useSelector((state) => state.post);
+  const { productsItems, cartItems, auth } = useSelector((state) => state.post);
+
+  console.log(auth)
 
   // Add Modal
   const showAddModal = () => {
@@ -123,21 +125,25 @@ const Products = () => {
         );
       })}
 
-      <Card
-        hoverable
-        className="w-full flex-center bg-indigo-600 hover:bg-indigo-500 duration-300 text-white min-h-[236px]"
-        onClick={showAddModal}
-      >
-        <PlusOutlined className="md:text-6xl" />
-      </Card>
+      {auth && (
+        <Card
+          onClick={showAddModal}
+          hoverable
+          className="w-full flex-center bg-indigo-600 hover:bg-indigo-500 duration-300 text-white min-h-[236px]"
+        >
+          <PlusOutlined className="md:text-6xl" />
+        </Card>
+      )}
 
-      <Card
-        onClick={() => navigate("/productPage")}
-        hoverable
-        className="w-full flex-center bg-slate-600 hover:bg-slate-500 duration-300 text-white min-h-[236px]"
-      >
-        <EditOutlined className="md:text-6xl" />
-      </Card>
+      {auth && (
+        <Card
+          onClick={() => navigate("/editProductPage")}
+          hoverable
+          className="w-full flex-center bg-slate-600 hover:bg-slate-500 duration-300 text-white min-h-[236px]"
+        >
+          <EditOutlined className="md:text-6xl" />
+        </Card>
+      )}
 
       <AddProdModal
         handleAddOk={handleAddOk}

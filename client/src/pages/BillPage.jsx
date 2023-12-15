@@ -21,7 +21,7 @@ const BillsPage = () => {
 
   return (
     <div className="px-4">
-      <h2 className="text-4xl font-semibold text-center mb-6">Bill</h2>
+      <h2 className="text-4xl font-semibold text-center mb-6">Bills</h2>
 
       <BillTable showModal={showModal} setPrintModalData={setPrintModalData} />
 

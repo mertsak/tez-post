@@ -1,15 +1,31 @@
-import { Button, Form, Input, Carousel } from "antd";
+import { Button, Form, Input, Carousel, message } from "antd";
 import { Link } from "react-router-dom";
 import AuthCarousel from "../../components/auth/AuthCarousel";
 import { LockOutlined, UserOutlined, MailOutlined } from "@ant-design/icons";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../redux/services/authService";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const onFinish = async (values) => {
+    try {
+      await dispatch(registerUser(values)).unwrap();
+      message.success("Your registration has been successfully created");
+      navigate("/loginPage");
+    } catch (error) {
+      message.error(error.message);
+    }
+  };
+
   return (
     <div className="h-screen">
       <div className="flex justify-between h-full">
         <div className="xl:px-20 px-10 w-full flex flex-col h-full justify-center relative bg-gray-50">
           <h1 className="text-center text-5xl font-bold mb-6">LOGO</h1>
-          <Form layout="vertical">
+          <Form layout="vertical" onFinish={onFinish}>
             <Form.Item
               hasFeedback
               label="Kullanıcı Adı"
@@ -17,7 +33,15 @@ const RegisterPage = () => {
               rules={[
                 {
                   required: true,
-                  message: "Kullanıcı Adı Alanı Boş Bırakılamaz!",
+                  message: "Username Field Cannot Be Left Blank!",
+                },
+                {
+                  min: 3,
+                  message: "Username must be at least 3 characters!",
+                },
+                {
+                  max: 20,
+                  message: "Username must be at most 20 characters!",
                 },
               ]}
             >
@@ -59,6 +83,15 @@ const RegisterPage = () => {
                   required: true,
                   message: "Şifre Alanı Boş Bırakılamaz!",
                 },
+                {
+                  min: 6,
+                  message: "password must be at least 6 characters!",
+                },
+
+                {
+                  max: 20,
+                  message: "password must be at most 20 characters!",
+                },
               ]}
             >
               <Input.Password
@@ -77,6 +110,15 @@ const RegisterPage = () => {
                 {
                   required: true,
                   message: "Şifre Tekrar Alanı Boş Bırakılamaz!",
+                },
+                {
+                  min: 6,
+                  message: "password must be at least 6 characters!",
+                },
+
+                {
+                  max: 20,
+                  message: "password must be at most 20 characters!",
                 },
                 ({ getFieldValue }) => ({
                   validator(_, value) {

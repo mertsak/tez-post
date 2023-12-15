@@ -15,6 +15,8 @@ import {
 
 import { getBillsItems, addBillItem } from "./services/billService";
 
+import { loginUser, registerUser } from "./services/authService";
+
 export const postSlice = createSlice({
   name: "post",
   initialState: {
@@ -25,6 +27,7 @@ export const postSlice = createSlice({
     billsItems: [],
     total: 0,
     tax: 0.08,
+    auth: null,
   },
   reducers: {
     setSideCartTotal: (state, action) => {
@@ -92,6 +95,10 @@ export const postSlice = createSlice({
       state.cartItems = [];
       state.total = 0;
     },
+
+    resetAuth: (state) => {
+      state.auth = null;
+    },
   },
   extraReducers: (builder) => {
     // Categories
@@ -145,6 +152,13 @@ export const postSlice = createSlice({
     builder.addCase(addBillItem.fulfilled, (state, action) => {
       state.billsItems = [...state.billsItems, action.payload];
     });
+
+    // Auth
+
+    builder.addCase(loginUser.fulfilled, (state, action) => {
+      state.auth = action.payload.user;
+      localStorage.setItem("auth", JSON.stringify(action.payload.user));
+    });
   },
 });
 
@@ -155,6 +169,7 @@ export const {
   incrementItem,
   decrementItem,
   resetCart,
+  resetAuth,
 } = postSlice.actions;
 
 export default postSlice.reducer;

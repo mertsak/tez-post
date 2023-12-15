@@ -11,7 +11,9 @@ const Categories = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [form] = Form.useForm();
-  const { categoriesItems } = useSelector((state) => state.post);
+  const { categoriesItems, auth } = useSelector((state) => state.post);
+
+  console.log(auth);
 
   // Add Modal
   const showAddModal = () => {
@@ -54,21 +56,25 @@ const Categories = () => {
           );
         })}
 
-        <li
-          type="primary"
-          onClick={showAddModal}
-          className="categories-item bg-indigo-700 hover:bg-indigo-500"
-        >
-          <PlusOutlined className="md:text-2xl" />
-        </li>
+        {auth && (
+          <li
+            type="primary"
+            onClick={showAddModal}
+            className="categories-item bg-indigo-700 hover:bg-indigo-500"
+          >
+            <PlusOutlined className="md:text-2xl" />
+          </li>
+        )}
 
-        <li
-          type="primary"
-          onClick={showEditModal}
-          className="categories-item bg-slate-700 hover:bg-slate-500"
-        >
-          <EditOutlined className="md:text-2xl" />
-        </li>
+        {auth && (
+          <li
+            type="primary"
+            onClick={showEditModal}
+            className="categories-item bg-slate-700 hover:bg-slate-500"
+          >
+            <EditOutlined className="md:text-2xl" />
+          </li>
+        )}
       </ul>
 
       <AddCateModal

@@ -1,4 +1,4 @@
-import { Input, Badge, Button } from "antd";
+import { Input, Badge, Button, message } from "antd";
 import {
   SearchOutlined,
   HomeOutlined,
@@ -11,13 +11,19 @@ import {
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setSideCartTotal } from "../redux/postSlice";
+import { setSideCartTotal, resetAuth } from "../redux/postSlice";
 import { useLocation } from "react-router-dom";
 
 const Header = () => {
-  const { sideCartTotal, cartItems } = useSelector((state) => state.post);
+  const { sideCartTotal, cartItems, auth } = useSelector((state) => state.post);
   const dispatch = useDispatch();
   const location = useLocation();
+
+  const handleLogout = () => {
+    message.success("Logout successfully");
+    localStorage.removeItem("auth");
+    dispatch(resetAuth());
+  };
 
   return (
     <div className="border-b mb-6">
@@ -71,25 +77,33 @@ const Header = () => {
             </Link>
           </Badge>
 
-          <Link to="/billPage" className="menu-link">
-            <CopyOutlined className="text-xl md:text-2xl" />
-            <span className="text-[10px] md:text-xs">Bill</span>
-          </Link>
+          {auth && (
+            <Link to="/billPage" className="menu-link">
+              <CopyOutlined className="text-xl md:text-2xl" />
+              <span className="text-[10px] md:text-xs">Bills</span>
+            </Link>
+          )}
 
-          <Link to="/employeesPage" className="menu-link">
-            <UserOutlined className="text-xl md:text-2xl" />
-            <span className="text-[10px] md:text-xs">Employees</span>
-          </Link>
+          {auth && (
+            <Link to="/employeesPage" className="menu-link">
+              <UserOutlined className="text-xl md:text-2xl" />
+              <span className="text-[10px] md:text-xs">Employees</span>
+            </Link>
+          )}
 
-          <Link to="/statisticPage" className="menu-link">
-            <BarChartOutlined className="text-xl md:text-2xl" />
-            <span className="text-[10px] md:text-xs">Statistics</span>
-          </Link>
+          {auth && (
+            <Link to="/statisticPage" className="menu-link">
+              <BarChartOutlined className="text-xl md:text-2xl" />
+              <span className="text-[10px] md:text-xs">Statistics</span>
+            </Link>
+          )}
 
-          <a href="/" className="menu-link">
-            <LoginOutlined className="text-xl md:text-2xl" />
-            <span className="text-[10px] md:text-xs">Logout</span>
-          </a>
+          {auth && (
+            <a href="/" className="menu-link" onClick={() => handleLogout()}>
+              <LoginOutlined className="text-xl md:text-2xl" />
+              <span className="text-[10px] md:text-xs">Logout</span>
+            </a>
+          )}
 
           <div
             className={`md:hidden  ${
