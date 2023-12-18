@@ -34,6 +34,7 @@ export const postSlice = createSlice({
     filteredProducts: [],
     cateTitle: "All",
     searchData: "",
+    loading: false,
   },
   reducers: {
     setSideCartTotal: (state, action) => {
@@ -147,9 +148,15 @@ export const postSlice = createSlice({
     });
 
     // Products
+
+    builder.addCase(getProductsItems.pending, (state, action) => {
+      state.loading = true;
+    });
+
     builder.addCase(getProductsItems.fulfilled, (state, action) => {
       state.productsItems = action.payload;
       state.filteredProducts = action.payload;
+      state.loading = false;
     });
 
     builder.addCase(addProductItem.fulfilled, (state, action) => {
@@ -171,8 +178,14 @@ export const postSlice = createSlice({
     });
 
     // Bills
+
+    builder.addCase(getBillsItems.pending, (state, action) => {
+      state.loading = true;
+    });
+
     builder.addCase(getBillsItems.fulfilled, (state, action) => {
       state.billsItems = action.payload;
+      state.loading = false;
     });
 
     builder.addCase(addBillItem.fulfilled, (state, action) => {
@@ -188,8 +201,13 @@ export const postSlice = createSlice({
 
     // Employees
 
+    builder.addCase(getEmployeesItems.pending, (state, action) => {
+      state.loading = true;
+    });
+
     builder.addCase(getEmployeesItems.fulfilled, (state, action) => {
       state.empleyeesItems = action.payload;
+      state.loading = false;
     });
   },
 });

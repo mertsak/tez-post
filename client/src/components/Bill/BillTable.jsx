@@ -1,13 +1,13 @@
-import { Table, Button } from "antd";
+import { Table, Button, Spin } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getBillsItems } from "../../redux/services/billService";
 
 const BillTable = ({ showModal, setPrintModalData }) => {
   const dispatch = useDispatch();
-  const { billsItems } = useSelector((state) => state.post);
+  const { billsItems, loading } = useSelector((state) => state.post);
 
-  console.log(billsItems);
+  console.log(loading);
 
   useEffect(() => {
     dispatch(getBillsItems());
@@ -68,15 +68,25 @@ const BillTable = ({ showModal, setPrintModalData }) => {
   ];
 
   return (
-    <Table
-      dataSource={billsItems}
-      columns={columns}
-      bordered
-      pagination={false}
-      rowKey={"_id"}
-      className="w-3/4 mx-auto"
-      scroll={{ x: 1000, y: 600 }}
-    />
+    <>
+      {loading ? (
+        <Spin
+          className="w-screen absolute top-1/2"
+          tip="Loading"
+          size="large"
+        />
+      ) : (
+        <Table
+          dataSource={billsItems}
+          columns={columns}
+          bordered
+          pagination={false}
+          rowKey={"_id"}
+          className="w-3/4 mx-auto"
+          scroll={{ x: 1000, y: 600 }}
+        />
+      )}
+    </>
   );
 };
 

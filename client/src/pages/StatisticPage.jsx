@@ -84,11 +84,9 @@ const StatisticPage = () => {
     dispatch(getBillsItems());
   }, [dispatch]);
 
-  const { billsItems, productsItems, auth } = useSelector(
+  const { billsItems, productsItems } = useSelector(
     (state) => state.post
   );
-
-  console.log(auth);
 
   const totalCashAmount = billsItems.reduce((total, item) => {
     if (item.paymentMethod === "Cash") {
@@ -130,11 +128,19 @@ const StatisticPage = () => {
             <h2 className="text-2xl">Hoş Geldin</h2>
             <p className="text-xl font-medium">
               Username &nbsp;: &nbsp;
-              <span className="text-green-600">{auth?.username}</span>
+              <span className="text-green-600">
+                {localStorage.getItem("auth")
+                  ? JSON.parse(localStorage.getItem("auth")).username
+                  : ""}
+              </span>
             </p>
             <p className="text-xl font-medium">
               Email &nbsp;: &nbsp;
-              <span className="text-green-600">{auth?.email}</span>
+              <span className="text-green-600">
+                {localStorage.getItem("auth")
+                  ? JSON.parse(localStorage.getItem("auth")).email
+                  : ""}
+              </span>
             </p>
           </div>
 

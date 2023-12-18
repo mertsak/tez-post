@@ -1,4 +1,4 @@
-import { Table, Button, Input, Space } from "antd";
+import { Table, Button, Input, Space, Spin } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
@@ -9,7 +9,7 @@ import { getEmployeesItems } from "../../redux/services/employeeService";
 const CustomerTable = () => {
   const dispatch = useDispatch();
 
-  const { empleyeesItems } = useSelector((state) => state.post);
+  const { empleyeesItems, loading } = useSelector((state) => state.post);
 
   useEffect(() => {
     dispatch(getEmployeesItems());
@@ -147,15 +147,25 @@ const CustomerTable = () => {
   ];
 
   return (
-    <Table
-      dataSource={empleyeesItems}
-      columns={columns}
-      bordered
-      pagination={false}
-      className="w-3/4 mx-auto"
-      scroll={{ x: 1000, y: 600 }}
-      rowKey={"_id"}
-    />
+    <>
+      {loading ? (
+        <Spin
+          className="w-screen absolute top-1/2"
+          tip="Loading"
+          size="large"
+        />
+      ) : (
+        <Table
+          dataSource={empleyeesItems}
+          columns={columns}
+          bordered
+          pagination={false}
+          className="w-3/4 mx-auto"
+          scroll={{ x: 1000, y: 600 }}
+          rowKey={"_id"}
+        />
+      )}
+    </>
   );
 };
 

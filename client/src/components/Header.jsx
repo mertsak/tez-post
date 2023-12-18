@@ -16,7 +16,7 @@ import {
   resetAuth,
   handleSearchData,
 } from "../redux/postSlice";
-import { useLocation } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 
 const Header = () => {
   const { sideCartTotal, cartItems } = useSelector((state) => state.post);
@@ -57,18 +57,36 @@ const Header = () => {
           offset={[-5, 2]}
           className="md:hidden flex"
         >
-          <Link to="/basketPage" className="menu-link">
+          <NavLink
+            to="/basketPage"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "menu-link"
+                : isActive
+                ? "menu-link text-[#40a9ff]"
+                : "menu-link"
+            }
+          >
             <ShoppingCartOutlined className="text-2xl" />
             <span className="text-[10px]">Basket</span>
-          </Link>
+          </NavLink>
         </Badge>
 
         {/* MENU LINKS */}
         <div className="flex-between gap-8 md:static fixed bottom-0 left-0 right-0 z-50 md:w-auto w-screen md:bg-transparent bg-white md:border-t-0 border-t md:px-0 px-6 md:py-0 py-2">
-          <Link to="/" className="menu-link">
+          <NavLink
+            to="/"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "menu-link"
+                : isActive
+                ? "menu-link text-[#40a9ff]"
+                : "menu-link"
+            }
+          >
             <HomeOutlined className="text-xl md:text-2xl" />
             <span className="text-[10px] md:text-xs">Home</span>
-          </Link>
+          </NavLink>
 
           <Badge
             count={
@@ -79,31 +97,67 @@ const Header = () => {
             offset={[-5, 2]}
             className="md:flex hidden"
           >
-            <Link to="/basketPage" className="menu-link">
+            <NavLink
+              to="/basketPage"
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "menu-link"
+                  : isActive
+                  ? "menu-link text-[#40a9ff]"
+                  : "menu-link"
+              }
+            >
               <ShoppingCartOutlined className="text-xl md:text-2xl" />
               <span className="text-[10px] md:text-xs">Basket</span>
-            </Link>
+            </NavLink>
           </Badge>
 
           {auth && (
-            <Link to="/billPage" className="menu-link">
+            <NavLink
+              to="/billPage"
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "menu-link"
+                  : isActive
+                  ? "menu-link text-[#40a9ff]"
+                  : "menu-link"
+              }
+            >
               <CopyOutlined className="text-xl md:text-2xl" />
               <span className="text-[10px] md:text-xs">Bills</span>
-            </Link>
+            </NavLink>
           )}
 
           {auth && (
-            <Link to="/employeesPage" className="menu-link">
+            <NavLink
+              to="/employeesPage"
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "menu-link"
+                  : isActive
+                  ? "menu-link text-[#40a9ff]"
+                  : "menu-link"
+              }
+            >
               <UserOutlined className="text-xl md:text-2xl" />
               <span className="text-[10px] md:text-xs">Employees</span>
-            </Link>
+            </NavLink>
           )}
 
           {auth && (
-            <Link to="/statisticPage" className="menu-link">
+            <NavLink
+              to="/statisticPage"
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "menu-link"
+                  : isActive
+                  ? "menu-link text-[#40a9ff]"
+                  : "menu-link"
+              }
+            >
               <BarChartOutlined className="text-xl md:text-2xl" />
               <span className="text-[10px] md:text-xs">Statistics</span>
-            </Link>
+            </NavLink>
           )}
 
           {auth && (

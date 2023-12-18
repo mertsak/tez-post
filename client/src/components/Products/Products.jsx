@@ -1,4 +1,4 @@
-import { Card, Form, Button, message } from "antd";
+import { Card, Form, Button, message, Spin } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { getProductsItems } from "../../redux/services/productService";
@@ -17,7 +17,7 @@ const Products = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [form] = Form.useForm();
 
-  const { cartItems, filteredProducts, searchData } = useSelector(
+  const { cartItems, filteredProducts, searchData, loading } = useSelector(
     (state) => state.post
   );
   const auth = JSON.parse(localStorage.getItem("auth"));
@@ -65,87 +65,92 @@ const Products = () => {
 
   return (
     <div className="products grid grid-cols-products-fill gap-4">
-      {filteredProducts
-        .filter((item) => item.title.toLowerCase().includes(searchData))
-        ?.map((item) => {
-          return (
-            <Card
-              hoverable
-              className="w-full"
-              onClick={() => handleClick(item)}
-              cover={
-                <img
-                  alt={item.title}
-                  src={item.img}
-                  className="h-[135px] object-fill -z-50"
-                />
-              }
-              key={item._id}
-            >
-              <div className="flex flex-col justify-center items-start gap-1">
-                <span className="text-xl font-semibold">{item.title}</span>
-                <span className="text-base font-medium">${item.price}</span>
-              </div>
-
-              <div className="flex justify-center items-center gap-4 mt-3">
-                <Button
-                  type="primary"
-                  size="large"
-                  shape="circle"
-                  className="w-full flex items-center justify-center rounded-full"
-                  icon={<MinusOutlined />}
-                  onClick={(e) => handleDecrement(item, e)}
-                  disabled={
-                    cartItems.length > 0 &&
-                    cartItems.find((cartItem) => cartItem._id === item._id)
-                      ? false
-                      : true
+      {loading ? (
+        <Spin className="w-3/4 absolute top-1/3" tip="Loading" size="large" />
+      ) : (
+        <>
+          {filteredProducts
+            .filter((item) => item.title.toLowerCase().includes(searchData))
+            ?.map((item) => {
+              return (
+                <Card
+                  hoverable
+                  className="w-full"
+                  onClick={() => handleClick(item)}
+                  cover={
+                    <img
+                      alt={item.title}
+                      src={item.img}
+                      className="h-[135px] object-fill -z-50"
+                    />
                   }
-                />
+                  key={item._id}
+                >
+                  <div className="flex flex-col justify-center items-start gap-1">
+                    <span className="text-xl font-semibold">{item.title}</span>
+                    <span className="text-base font-medium">${item.price}</span>
+                  </div>
 
-                {cartItems.length > 0 &&
-                cartItems.find((cartItem) => cartItem._id === item._id) ? (
-                  <span className="text-xl font-semibold">
-                    {
-                      cartItems.find((cartItem) => cartItem._id === item._id)
-                        .quantity
-                    }
-                  </span>
-                ) : (
-                  <span className="text-xl font-semibold">0</span>
-                )}
+                  <div className="flex justify-center items-center gap-4 mt-3">
+                    <Button
+                      type="primary"
+                      size="large"
+                      shape="circle"
+                      className="w-full flex items-center justify-center rounded-full"
+                      icon={<MinusOutlined />}
+                      onClick={(e) => handleDecrement(item, e)}
+                      disabled={
+                        cartItems.length > 0 &&
+                        cartItems.find((cartItem) => cartItem._id === item._id)
+                          ? false
+                          : true
+                      }
+                    />
 
-                <Button
-                  type="primary"
-                  size="large"
-                  shape="circle"
-                  className="w-full flex items-center justify-center rounded-full"
-                  icon={<PlusOutlined />}
-                  onClick={(e) => handleIncrement(item, e)}
-                />
-              </div>
+                    {cartItems.length > 0 &&
+                    cartItems.find((cartItem) => cartItem._id === item._id) ? (
+                      <span className="text-xl font-semibold">
+                        {
+                          cartItems.find(
+                            (cartItem) => cartItem._id === item._id
+                          ).quantity
+                        }
+                      </span>
+                    ) : (
+                      <span className="text-xl font-semibold">0</span>
+                    )}
+
+                    <Button
+                      type="primary"
+                      size="large"
+                      shape="circle"
+                      className="w-full flex items-center justify-center rounded-full"
+                      icon={<PlusOutlined />}
+                      onClick={(e) => handleIncrement(item, e)}
+                    />
+                  </div>
+                </Card>
+              );
+            })}
+          {auth && (
+            <Card
+              onClick={showAddModal}
+              hoverable
+              className="w-full flex-center bg-indigo-600 hover:bg-indigo-500 duration-300 text-white min-h-[236px]"
+            >
+              <PlusOutlined className="md:text-6xl" />
             </Card>
-          );
-        })}
-
-      {auth && (
-        <Card
-          onClick={showAddModal}
-          hoverable
-          className="w-full flex-center bg-indigo-600 hover:bg-indigo-500 duration-300 text-white min-h-[236px]"
-        >
-          <PlusOutlined className="md:text-6xl" />
-        </Card>
-      )}
-
-      {auth && (
-        <Card
-          onClick={() => navigate("/editProductPage")}
-          hoverable
-          className="w-full flex-center bg-slate-600 hover:bg-slate-500 duration-300 text-white min-h-[236px]"
-        >
-          <EditOutlined className="md:text-6xl" />
-        </Card>
+          )}
+          {auth && (
+            <Card
+              onClick={() => navigate("/editProductPage")}
+              hoverable
+              className="w-full flex-center bg-slate-600 hover:bg-slate-500 duration-300 text-white min-h-[236px]"
+            >
+              <EditOutlined className="md:text-6xl" />
+            </Card>
+          )}
+        </>
       )}
 
       <AddProdModal
