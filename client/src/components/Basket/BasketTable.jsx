@@ -61,24 +61,20 @@ const BasketTable = () => {
         value: item.title,
       })),
       onFilter: (value, record) =>
-        categoriesItems.find((item) => item._id === record.category)?.title ===
-        value,
-      sorter: (a, b) => a.title.length - b.title.length,
-      sortDirections: ["descend"],
+        categoriesItems.find((item) => item.title === record.category)
+          ?.title === value,
     },
     {
       title: "Product Price",
       dataIndex: "price",
       key: "price",
       sorter: (a, b) => a.price - b.price,
-      sortDirections: ["descend"],
     },
     {
       title: "Product Quantity",
       dataIndex: "quantity",
       key: "quantity",
       sorter: (a, b) => a.quantity - b.quantity,
-      sortDirections: ["descend"],
       render: (_, record) => {
         return (
           <div className="flex justify-center items-center gap-4 mt-3">
@@ -129,7 +125,6 @@ const BasketTable = () => {
         return <span>{(record.price * record.quantity).toFixed(2)}</span>;
       },
       sorter: (a, b) => a.quantity * a.price - b.quantity * b.price,
-      sortDirections: ["descend"],
     },
     {
       title: "Action",

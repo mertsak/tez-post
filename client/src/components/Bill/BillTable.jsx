@@ -23,7 +23,6 @@ const BillTable = ({ showModal, setPrintModalData }) => {
       key: "createdAt",
       render: (text) => <span>{text.slice(0, 10)}</span>,
       sorter: (a, b) => a.createdAt.localeCompare(b.createdAt),
-      sortDirections: ["descend"],
     },
     {
       title: "Payment Method",
@@ -65,7 +64,7 @@ const BillTable = ({ showModal, setPrintModalData }) => {
       pagination={false}
       rowKey={"_id"}
       className="w-3/4 mx-auto"
-      scroll={{ x: 1000 , y: 600 }}
+      scroll={{ x: 1000, y: 600 }}
     />
   );
 };

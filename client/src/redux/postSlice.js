@@ -17,6 +17,8 @@ import { getBillsItems, addBillItem } from "./services/billService";
 
 import { loginUser } from "./services/authService";
 
+import { getEmployeesItems } from "./services/employeeService";
+
 export const postSlice = createSlice({
   name: "post",
   initialState: {
@@ -25,6 +27,7 @@ export const postSlice = createSlice({
     productsItems: [],
     cartItems: [],
     billsItems: [],
+    empleyeesItems: [],
     total: 0,
     tax: 0.08,
     auth: null,
@@ -176,6 +179,12 @@ export const postSlice = createSlice({
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.auth = action.payload.user;
       localStorage.setItem("auth", JSON.stringify(action.payload.user));
+    });
+
+    // Employees
+
+    builder.addCase(getEmployeesItems.fulfilled, (state, action) => {
+      state.empleyeesItems = action.payload;
     });
   },
 });
