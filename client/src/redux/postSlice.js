@@ -146,6 +146,7 @@ export const postSlice = createSlice({
 
     builder.addCase(addProductItem.fulfilled, (state, action) => {
       state.productsItems = [...state.productsItems, action.payload];
+      state.filteredProducts = [...state.filteredProducts, action.payload];
     });
 
     builder.addCase(editProductItem.fulfilled, (state, action) => {

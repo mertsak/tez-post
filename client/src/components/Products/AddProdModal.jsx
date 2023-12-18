@@ -109,7 +109,7 @@ const AddProdModal = ({
             }
             options={
               categoriesItems?.map((item) => ({
-                value: item._id,
+                value: item.title,
                 label: item.title,
               })) ?? []
             }

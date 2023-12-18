@@ -17,9 +17,7 @@ const Products = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [form] = Form.useForm();
 
-  const { cartItems, filteredProducts, cateTitle } = useSelector(
-    (state) => state.post
-  );
+  const { cartItems, filteredProducts } = useSelector((state) => state.post);
   const auth = JSON.parse(localStorage.getItem("auth"));
 
   // Add Modal

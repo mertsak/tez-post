@@ -71,7 +71,7 @@ const EditProduct = () => {
       render: (_, record) => {
         return (
           <span>
-            {categoriesItems?.find((item) => item._id === record.category)
+            {categoriesItems?.find((item) => item.title === record.category)
               ?.title ?? "No Category"}
           </span>
         );

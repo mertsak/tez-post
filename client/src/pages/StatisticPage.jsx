@@ -133,7 +133,7 @@ const StatisticPage = () => {
             <StatisticCard
               title={"Masa Sayısı"}
               amount={"50"}
-              img={"images/user.png"}
+              img={"images/table3.png"}
             />
             <StatisticCard
               title={"Toplam Kazanç"}
