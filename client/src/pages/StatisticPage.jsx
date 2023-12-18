@@ -84,7 +84,11 @@ const StatisticPage = () => {
     dispatch(getBillsItems());
   }, [dispatch]);
 
-  const { billsItems, productsItems } = useSelector((state) => state.post);
+  const { billsItems, productsItems, auth } = useSelector(
+    (state) => state.post
+  );
+
+  console.log(auth);
 
   const totalCashAmount = billsItems.reduce((total, item) => {
     if (item.paymentMethod === "Cash") {
@@ -122,9 +126,17 @@ const StatisticPage = () => {
         {/* static section */}
 
         <div>
-          <h2 className="text-xl">
-            Hoş Geldin <span className="text-green-700 font-bold">Admin</span>.
-          </h2>
+          <div>
+            <h2 className="text-2xl">Hoş Geldin</h2>
+            <p className="text-xl font-medium">
+              Username &nbsp;: &nbsp;
+              <span className="text-green-600">{auth?.username}</span>
+            </p>
+            <p className="text-xl font-medium">
+              Email &nbsp;: &nbsp;
+              <span className="text-green-600">{auth?.email}</span>
+            </p>
+          </div>
 
           {/* static cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-10 my-10">
