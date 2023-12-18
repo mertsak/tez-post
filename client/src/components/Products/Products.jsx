@@ -17,9 +17,10 @@ const Products = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [form] = Form.useForm();
 
-  const { productsItems, cartItems, auth } = useSelector((state) => state.post);
-
-  console.log(auth)
+  const { cartItems, filteredProducts, cateTitle } = useSelector(
+    (state) => state.post
+  );
+  const auth = JSON.parse(localStorage.getItem("auth"));
 
   // Add Modal
   const showAddModal = () => {
@@ -64,7 +65,7 @@ const Products = () => {
 
   return (
     <div className="products grid grid-cols-products-fill gap-4">
-      {productsItems?.map((item) => {
+      {filteredProducts?.map((item) => {
         return (
           <Card
             hoverable
@@ -74,7 +75,7 @@ const Products = () => {
               <img
                 alt={item.title}
                 src={item.img}
-                className="h-[135px] object-fill"
+                className="h-[135px] object-fill -z-50"
               />
             }
             key={item._id}

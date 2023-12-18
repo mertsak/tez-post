@@ -1,4 +1,8 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
 
 // import components
 import HomePage from "./pages/HomePage.jsx";
@@ -27,25 +31,25 @@ function App() {
         },
         {
           path: "/billPage",
-          element: <BillPage />,
+          element: <RouteController children={<BillPage />} />,
         },
         {
           path: "/employeesPage",
-          element: <EmployeesPage />,
+          element: <RouteController children={<EmployeesPage />} />,
         },
         {
           path: "/statisticPage",
-          element: <StatisticPage />,
+          element: <RouteController children={<StatisticPage />} />,
         },
         {
-          path: "/productPage",
-          element: <ProductPage />,
+          path: "/editProductPage",
+          element: <RouteController children={<ProductPage />} />,
         },
       ],
     },
     {
       path: "/registerPage",
-      element: <RegisterPage />,
+      element: <RouteController children={<RegisterPage />} />,
     },
     {
       path: "/loginPage",
@@ -61,3 +65,11 @@ function App() {
 }
 
 export default App;
+
+export const RouteController = ({ children }) => {
+  if (localStorage.getItem("auth")) {
+    return children;
+  } else {
+    return <Navigate to="/loginPage" />;
+  }
+};

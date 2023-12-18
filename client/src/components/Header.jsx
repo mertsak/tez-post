@@ -15,14 +15,15 @@ import { setSideCartTotal, resetAuth } from "../redux/postSlice";
 import { useLocation } from "react-router-dom";
 
 const Header = () => {
-  const { sideCartTotal, cartItems, auth } = useSelector((state) => state.post);
+  const { sideCartTotal, cartItems } = useSelector((state) => state.post);
   const dispatch = useDispatch();
   const location = useLocation();
+  const auth = JSON.parse(localStorage.getItem("auth"));
 
   const handleLogout = () => {
-    message.success("Logout successfully");
     localStorage.removeItem("auth");
     dispatch(resetAuth());
+    message.success("Logout successfully");
   };
 
   return (

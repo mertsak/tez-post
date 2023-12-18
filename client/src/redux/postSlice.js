@@ -15,7 +15,7 @@ import {
 
 import { getBillsItems, addBillItem } from "./services/billService";
 
-import { loginUser, registerUser } from "./services/authService";
+import { loginUser } from "./services/authService";
 
 export const postSlice = createSlice({
   name: "post",
@@ -28,6 +28,8 @@ export const postSlice = createSlice({
     total: 0,
     tax: 0.08,
     auth: null,
+    filteredProducts: [],
+    cateTitle: "All",
   },
   reducers: {
     setSideCartTotal: (state, action) => {
@@ -99,6 +101,20 @@ export const postSlice = createSlice({
     resetAuth: (state) => {
       state.auth = null;
     },
+
+    filterProducts: (state, action) => {
+      if (action.payload === "All") {
+        state.filteredProducts = state.productsItems;
+      } else {
+        state.filteredProducts = state.productsItems.filter(
+          (item) => item.category === action.payload
+        );
+      }
+    },
+
+    selectCateTitle: (state, action) => {
+      state.cateTitle = action.payload;
+    },
   },
   extraReducers: (builder) => {
     // Categories
@@ -125,6 +141,7 @@ export const postSlice = createSlice({
     // Products
     builder.addCase(getProductsItems.fulfilled, (state, action) => {
       state.productsItems = action.payload;
+      state.filteredProducts = action.payload;
     });
 
     builder.addCase(addProductItem.fulfilled, (state, action) => {
@@ -170,6 +187,8 @@ export const {
   decrementItem,
   resetCart,
   resetAuth,
+  selectCateTitle,
+  filterProducts,
 } = postSlice.actions;
 
 export default postSlice.reducer;

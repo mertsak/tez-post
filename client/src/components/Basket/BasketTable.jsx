@@ -128,6 +128,8 @@ const BasketTable = () => {
       render: (_, record) => {
         return <span>{(record.price * record.quantity).toFixed(2)}</span>;
       },
+      sorter: (a, b) => a.quantity * a.price - b.quantity * b.price,
+      sortDirections: ["descend"],
     },
     {
       title: "Action",
@@ -162,7 +164,7 @@ const BasketTable = () => {
       bordered
       pagination={false}
       className="w-3/4 mx-auto"
-      scroll={{ x: 1000 , y: 600 }}
+      scroll={{ x: 1000, y: 600 }}
       rowKey={"_id"}
     />
   );
