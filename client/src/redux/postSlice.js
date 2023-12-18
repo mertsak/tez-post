@@ -33,6 +33,7 @@ export const postSlice = createSlice({
     auth: null,
     filteredProducts: [],
     cateTitle: "All",
+    searchData: "",
   },
   reducers: {
     setSideCartTotal: (state, action) => {
@@ -118,6 +119,10 @@ export const postSlice = createSlice({
     selectCateTitle: (state, action) => {
       state.cateTitle = action.payload;
     },
+
+    handleSearchData: (state, action) => {
+      state.searchData = action.payload;
+    },
   },
   extraReducers: (builder) => {
     // Categories
@@ -199,6 +204,7 @@ export const {
   resetAuth,
   selectCateTitle,
   filterProducts,
+  handleSearchData,
 } = postSlice.actions;
 
 export default postSlice.reducer;

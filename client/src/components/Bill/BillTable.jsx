@@ -7,6 +7,8 @@ const BillTable = ({ showModal, setPrintModalData }) => {
   const dispatch = useDispatch();
   const { billsItems } = useSelector((state) => state.post);
 
+  console.log(billsItems);
+
   useEffect(() => {
     dispatch(getBillsItems());
   }, [dispatch]);
@@ -28,11 +30,20 @@ const BillTable = ({ showModal, setPrintModalData }) => {
       title: "Payment Method",
       dataIndex: "paymentMethod",
       key: "paymentMethod",
+      render: (text) => <span>{text}</span>,
+      filters: [...new Set(billsItems.map((item) => item.paymentMethod))].map(
+        (item) => ({
+          text: item,
+          value: item,
+        })
+      ),
+      onFilter: (value, record) => record.paymentMethod.includes(value),
     },
     {
       title: "Total Price",
       dataIndex: "totalAmount",
       key: "totalAmount",
+      sorter: (a, b) => a.totalAmount - b.totalAmount,
     },
     {
       title: "Action",

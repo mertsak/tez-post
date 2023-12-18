@@ -11,7 +11,11 @@ import {
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setSideCartTotal, resetAuth } from "../redux/postSlice";
+import {
+  setSideCartTotal,
+  resetAuth,
+  handleSearchData,
+} from "../redux/postSlice";
 import { useLocation } from "react-router-dom";
 
 const Header = () => {
@@ -41,6 +45,9 @@ const Header = () => {
             placeholder="Search..."
             prefix={<SearchOutlined />}
             className="max-w-[800px]"
+            onChange={(e) =>
+              dispatch(handleSearchData(e.target.value.toLowerCase()))
+            }
           />
         </div>
 

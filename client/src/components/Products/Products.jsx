@@ -17,7 +17,9 @@ const Products = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [form] = Form.useForm();
 
-  const { cartItems, filteredProducts } = useSelector((state) => state.post);
+  const { cartItems, filteredProducts, searchData } = useSelector(
+    (state) => state.post
+  );
   const auth = JSON.parse(localStorage.getItem("auth"));
 
   // Add Modal
@@ -63,66 +65,68 @@ const Products = () => {
 
   return (
     <div className="products grid grid-cols-products-fill gap-4">
-      {filteredProducts?.map((item) => {
-        return (
-          <Card
-            hoverable
-            className="w-full"
-            onClick={() => handleClick(item)}
-            cover={
-              <img
-                alt={item.title}
-                src={item.img}
-                className="h-[135px] object-fill -z-50"
-              />
-            }
-            key={item._id}
-          >
-            <div className="flex flex-col justify-center items-start gap-1">
-              <span className="text-xl font-semibold">{item.title}</span>
-              <span className="text-base font-medium">${item.price}</span>
-            </div>
+      {filteredProducts
+        .filter((item) => item.title.toLowerCase().includes(searchData))
+        ?.map((item) => {
+          return (
+            <Card
+              hoverable
+              className="w-full"
+              onClick={() => handleClick(item)}
+              cover={
+                <img
+                  alt={item.title}
+                  src={item.img}
+                  className="h-[135px] object-fill -z-50"
+                />
+              }
+              key={item._id}
+            >
+              <div className="flex flex-col justify-center items-start gap-1">
+                <span className="text-xl font-semibold">{item.title}</span>
+                <span className="text-base font-medium">${item.price}</span>
+              </div>
 
-            <div className="flex justify-center items-center gap-4 mt-3">
-              <Button
-                type="primary"
-                size="large"
-                shape="circle"
-                className="w-full flex items-center justify-center rounded-full"
-                icon={<MinusOutlined />}
-                onClick={(e) => handleDecrement(item, e)}
-                disabled={
-                  cartItems.length > 0 &&
-                  cartItems.find((cartItem) => cartItem._id === item._id)
-                    ? false
-                    : true
-                }
-              />
-
-              {cartItems.length > 0 &&
-              cartItems.find((cartItem) => cartItem._id === item._id) ? (
-                <span className="text-xl font-semibold">
-                  {
+              <div className="flex justify-center items-center gap-4 mt-3">
+                <Button
+                  type="primary"
+                  size="large"
+                  shape="circle"
+                  className="w-full flex items-center justify-center rounded-full"
+                  icon={<MinusOutlined />}
+                  onClick={(e) => handleDecrement(item, e)}
+                  disabled={
+                    cartItems.length > 0 &&
                     cartItems.find((cartItem) => cartItem._id === item._id)
-                      .quantity
+                      ? false
+                      : true
                   }
-                </span>
-              ) : (
-                <span className="text-xl font-semibold">0</span>
-              )}
+                />
 
-              <Button
-                type="primary"
-                size="large"
-                shape="circle"
-                className="w-full flex items-center justify-center rounded-full"
-                icon={<PlusOutlined />}
-                onClick={(e) => handleIncrement(item, e)}
-              />
-            </div>
-          </Card>
-        );
-      })}
+                {cartItems.length > 0 &&
+                cartItems.find((cartItem) => cartItem._id === item._id) ? (
+                  <span className="text-xl font-semibold">
+                    {
+                      cartItems.find((cartItem) => cartItem._id === item._id)
+                        .quantity
+                    }
+                  </span>
+                ) : (
+                  <span className="text-xl font-semibold">0</span>
+                )}
+
+                <Button
+                  type="primary"
+                  size="large"
+                  shape="circle"
+                  className="w-full flex items-center justify-center rounded-full"
+                  icon={<PlusOutlined />}
+                  onClick={(e) => handleIncrement(item, e)}
+                />
+              </div>
+            </Card>
+          );
+        })}
 
       {auth && (
         <Card
