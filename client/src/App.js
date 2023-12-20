@@ -49,7 +49,7 @@ function App() {
     },
     {
       path: "/registerPage",
-      element: <RouteController children={<RegisterPage />} />,
+      element: <RegisterPage />,
     },
     {
       path: "/loginPage",
