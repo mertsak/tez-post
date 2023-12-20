@@ -6,7 +6,7 @@ export const registerUser = createAsyncThunk(
   async (values, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/api/auth/register`,
+        `${process.env.REACT_APP_SERVER_URL}/api/auth/register`,
         values
       );
       return response.data;
@@ -21,7 +21,7 @@ export const loginUser = createAsyncThunk(
   async (values, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/api/auth/login`,
+        `${process.env.REACT_APP_SERVER_URL}/api/auth/login`,
         values
       );
       return response.data;

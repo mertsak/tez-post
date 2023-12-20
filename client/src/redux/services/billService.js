@@ -6,7 +6,7 @@ export const getBillsItems = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/api/bills/getAllBills`
+        `${process.env.REACT_APP_SERVER_URL}/api/bills/getAllBills`
       );
       return response.data;
     } catch (error) {
@@ -21,7 +21,7 @@ export const addBillItem = createAsyncThunk(
     console.log(values)
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/api/bills/createBills`,
+        `${process.env.REACT_APP_SERVER_URL}/api/bills/createBills`,
         values
       );
       return response.data;

@@ -6,7 +6,7 @@ export const getEmployeesItems = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/api/users/getAllUsers`
+        `${process.env.REACT_APP_SERVER_URL}/api/users/getAllUsers`
       );
       return response.data;
     } catch (error) {
