@@ -6,7 +6,7 @@ export const getCategoriesItems = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/categories/getAllCategories`
+        `${process.env.REACT_APP_BASE_URL}/api/categories/getAllCategories`
       );
       return response.data;
     } catch (error) {
@@ -20,7 +20,7 @@ export const addCategoryItem = createAsyncThunk(
   async (values) => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/categories/createCategory`,
+        `${process.env.REACT_APP_BASE_URL}/api/categories/createCategory`,
         values
       );
       return response.data;
@@ -35,7 +35,7 @@ export const editCategoryItem = createAsyncThunk(
   async (values) => {
     try {
       const response = await axios.put(
-        `${process.env.REACT_APP_BASE_URL}/categories/updateCategory`,
+        `${process.env.REACT_APP_BASE_URL}/api/categories/updateCategory`,
         values
       );
       return response.data;
@@ -50,7 +50,7 @@ export const deleteCategoryItem = createAsyncThunk(
   async (_id) => {
     try {
       const response = await axios.delete(
-        `${process.env.REACT_APP_BASE_URL}/categories/deleteCategory`,
+        `${process.env.REACT_APP_BASE_URL}/api/categories/deleteCategory`,
         { data: { _id } }
       );
       return response.data;

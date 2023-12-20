@@ -6,7 +6,7 @@ export const getProductsItems = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/products/getAllProducts`
+        `${process.env.REACT_APP_BASE_URL}/api/products/getAllProducts`
       );
       return response.data;
     } catch (error) {
@@ -20,7 +20,7 @@ export const addProductItem = createAsyncThunk(
   async (values) => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/products/createProduct`,
+        `${process.env.REACT_APP_BASE_URL}/api/products/createProduct`,
         values
       );
 
@@ -37,7 +37,7 @@ export const editProductItem = createAsyncThunk(
   async (values) => {
     try {
       const response = await axios.put(
-        `${process.env.REACT_APP_BASE_URL}/products/updateProduct`,
+        `${process.env.REACT_APP_BASE_URL}/api/products/updateProduct`,
         values
       );
       return response.data;
@@ -52,7 +52,7 @@ export const deleteProductItem = createAsyncThunk(
   async (_id) => {
     try {
       const response = await axios.delete(
-        `${process.env.REACT_APP_BASE_URL}/products/deleteProduct`,
+        `${process.env.REACT_APP_BASE_URL}/api/products/deleteProduct`,
         { data: { _id } }
       );
       return response.data;
