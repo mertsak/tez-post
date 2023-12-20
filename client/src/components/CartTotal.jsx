@@ -3,11 +3,19 @@ import { ClearOutlined, CloseOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteProduct, resetCart } from "../redux/postSlice";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const CartTotal = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { cartItems, total, tax } = useSelector((state) => state.post);
+
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
+
 
   const handleResetCart = () => {
     if (window.confirm("Are you sure you want to delete all items?")) {

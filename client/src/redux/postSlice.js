@@ -25,10 +25,17 @@ export const postSlice = createSlice({
     sideCartTotal: false,
     categoriesItems: [],
     productsItems: [],
-    cartItems: [],
+    cartItems: localStorage.getItem("cartItems")
+      ? JSON.parse(localStorage.getItem("cartItems"))
+      : [],
     billsItems: [],
     empleyeesItems: [],
-    total: 0,
+    total: localStorage.getItem("cartItems")
+      ? JSON.parse(localStorage.getItem("cartItems")).reduce(
+          (acc, item) => acc + item.price * item.quantity,
+          0
+        )
+      : 0,
     tax: 0.08,
     auth: null,
     filteredProducts: [],
