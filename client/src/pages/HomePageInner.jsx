@@ -36,8 +36,8 @@ const HomePageInner = () => {
         <div
           className={`${
             sideCartTotal === true
-              ? " absolute right-3 -top-[5.75rem] md:-top-3 md:right-0 z-[1000000]"
-              : "h-full flex items-center"
+              ? "absolute right-3 -top-[5.75rem] md:-top-3 md:right-0 z-[1000000]"
+              : "h-full flex items-center invisible md:visible"
           }`}
         >
           <Button
