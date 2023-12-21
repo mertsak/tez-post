@@ -10,6 +10,8 @@ const BasketPage = () => {
     setIsModalOpen(true);
   };
 
+  // Modal
+
   const handleOk = () => {
     setIsModalOpen(false);
   };
