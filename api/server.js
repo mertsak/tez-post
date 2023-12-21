@@ -28,6 +28,6 @@ app.use("/api/users", usersRoute);
 // ! Call the database function
 database();
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 7485;
 
 app.listen(port, () => console.log(`Server Running on port ${port}`));
