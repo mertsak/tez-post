@@ -2,13 +2,15 @@ import { Button, Form, Input, Carousel, Checkbox, message } from "antd";
 import { Link } from "react-router-dom";
 import AuthCarousel from "../../components/auth/AuthCarousel";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../redux/services/authService";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { loading } = useSelector((state) => state.post);
 
   const onFinish = async (values) => {
     try {
@@ -98,6 +100,7 @@ const LoginPage = () => {
                 htmlType="submit"
                 className="w-full"
                 size="large"
+                loading={loading}
               >
                 Giriş Yap
               </Button>

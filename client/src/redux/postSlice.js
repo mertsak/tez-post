@@ -201,9 +201,14 @@ export const postSlice = createSlice({
 
     // Auth
 
+    builder.addCase(loginUser.pending, (state, action) => {
+      state.loading = true;
+    });
+
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.auth = action.payload.user;
       localStorage.setItem("auth", JSON.stringify(action.payload.user));
+      state.loading = false;
     });
 
     // Employees
