@@ -26,7 +26,7 @@ const BasketPage = () => {
         <h2 className="text-4xl font-semibold text-center mb-6">Basket</h2>
         <BasketTable />
 
-        <div className="cart-total flex justify-end mt-4">
+        <div className="cart-total flex justify-end mt-4 mb-20 md:mb-0">
           <BasketCard showModal={showModal} />
         </div>
       </div>
