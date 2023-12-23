@@ -81,7 +81,7 @@ const Products = () => {
                     <img
                       alt={item.title}
                       src={item.img}
-                      className="max-h-[135px] object-fill -z-50"
+                      className="h-[135px] object-fill -z-50"
                     />
                   }
                   key={item._id}
