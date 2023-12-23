@@ -87,7 +87,7 @@ const Products = () => {
                   key={item._id}
                 >
                   <div className="flex flex-col justify-center items-start gap-1">
-                    <span className="text-lg font-semibold">{item.title}</span>
+                    <span className="text-lg font-semibold tracking-tight">{item.title}</span>
                     <span className="text-base font-medium">${item.price}</span>
                   </div>
 
