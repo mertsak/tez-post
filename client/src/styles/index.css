@@ -39,6 +39,7 @@ body {
 
 :where(.css-1adbn6x).ant-card .ant-card-body {
   padding: 0.8rem 0.6rem !important;
+  height: 100% !important;
 }
 
 :where(.css-1adbn6x).ant-card-bordered {

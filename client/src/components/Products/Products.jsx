@@ -75,7 +75,7 @@ const Products = () => {
               return (
                 <Card
                   hoverable
-                  className="w-full flex flex-col justify-between items-center"
+                  className="w-full flex flex-col justify-between"
                   onClick={() => handleClick(item)}
                   cover={
                     <img
