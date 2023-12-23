@@ -75,13 +75,13 @@ const Products = () => {
               return (
                 <Card
                   hoverable
-                  className="w-full"
+                  className="w-[170px]"
                   onClick={() => handleClick(item)}
                   cover={
                     <img
                       alt={item.title}
                       src={item.img}
-                      className="h-[135px] w-[170px] object-fill -z-50"
+                      className="h-[135px]  object-fill -z-50"
                     />
                   }
                   key={item._id}
