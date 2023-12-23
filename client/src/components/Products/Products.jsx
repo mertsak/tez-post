@@ -81,63 +81,53 @@ const Products = () => {
                     <img
                       alt={item.title}
                       src={item.img}
-                      className="h-[135px] object-fill -z-50"
+                      className="max-h-[135px] object-fill -z-50"
                     />
                   }
                   key={item._id}
                 >
-                  <div className="flex flex-col">
-                    <div className="flex flex-col justify-center items-start gap-1">
-                      <span className="text-xl font-semibold">
-                        {item.title}
-                      </span>
-                      <span className="text-base font-medium">
-                        ${item.price}
-                      </span>
-                    </div>
+                  <div className="flex flex-col justify-center items-start gap-1">
+                    <span className="text-xl font-semibold">{item.title}</span>
+                    <span className="text-base font-medium">${item.price}</span>
+                  </div>
 
-                    <div className="flex justify-center items-center gap-4 mt-3">
-                      <Button
-                        type="primary"
-                        size="large"
-                        shape="circle"
-                        className="w-full flex items-center justify-center rounded-full"
-                        icon={<MinusOutlined />}
-                        onClick={(e) => handleDecrement(item, e)}
-                        disabled={
-                          cartItems.length > 0 &&
+                  <div className="flex justify-center items-center gap-4 mt-3">
+                    <Button
+                      type="primary"
+                      size="large"
+                      shape="circle"
+                      className="w-full flex items-center justify-center rounded-full"
+                      icon={<MinusOutlined />}
+                      onClick={(e) => handleDecrement(item, e)}
+                      disabled={
+                        cartItems.length > 0 &&
+                        cartItems.find((cartItem) => cartItem._id === item._id)
+                          ? false
+                          : true
+                      }
+                    />
+
+                    {cartItems.length > 0 &&
+                    cartItems.find((cartItem) => cartItem._id === item._id) ? (
+                      <span className="text-xl font-semibold">
+                        {
                           cartItems.find(
                             (cartItem) => cartItem._id === item._id
-                          )
-                            ? false
-                            : true
+                          ).quantity
                         }
-                      />
+                      </span>
+                    ) : (
+                      <span className="text-xl font-semibold">0</span>
+                    )}
 
-                      {cartItems.length > 0 &&
-                      cartItems.find(
-                        (cartItem) => cartItem._id === item._id
-                      ) ? (
-                        <span className="text-xl font-semibold">
-                          {
-                            cartItems.find(
-                              (cartItem) => cartItem._id === item._id
-                            ).quantity
-                          }
-                        </span>
-                      ) : (
-                        <span className="text-xl font-semibold">0</span>
-                      )}
-
-                      <Button
-                        type="primary"
-                        size="large"
-                        shape="circle"
-                        className="w-full flex items-center justify-center rounded-full"
-                        icon={<PlusOutlined />}
-                        onClick={(e) => handleIncrement(item, e)}
-                      />
-                    </div>
+                    <Button
+                      type="primary"
+                      size="large"
+                      shape="circle"
+                      className="w-full flex items-center justify-center rounded-full"
+                      icon={<PlusOutlined />}
+                      onClick={(e) => handleIncrement(item, e)}
+                    />
                   </div>
                 </Card>
               );
