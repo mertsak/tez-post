@@ -75,7 +75,7 @@ const Products = () => {
               return (
                 <Card
                   hoverable
-                  className="w-[170px]"
+                  className="w-full"
                   onClick={() => handleClick(item)}
                   cover={
                     <img
