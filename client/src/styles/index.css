@@ -38,7 +38,12 @@ body {
 }
 
 :where(.css-1adbn6x).ant-card .ant-card-body {
-  padding: 0.8rem 0.6rem !important;
+  max-height: 184px !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-evenly !important;
+  padding: 0rem 0.6rem 0.8rem 0.6rem !important;
 }
 
 :where(.css-1adbn6x).ant-card-bordered {
