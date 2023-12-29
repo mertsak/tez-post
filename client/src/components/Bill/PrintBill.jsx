@@ -32,12 +32,12 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel, printModalData }) => {
             <div className="bill-details">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
                 <div className="text-md text-slate-500">
-                  <p className="font-bold text-slate-700">Fatura Detayı:</p>
+                  <p className="font-bold text-slate-700">Bill Detail:</p>
                   <p>Table Number - {printModalData?.tableNumber}</p>
                 </div>
 
                 <div className="text-md text-slate-500">
-                  <p className="font-bold text-slate-700">Fatura:</p>
+                  <p className="font-bold text-slate-700">Bill:</p>
                   The Boring Company
                   <p> Tesla Street 007</p>
                   <p> Frisco </p>
@@ -46,7 +46,7 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel, printModalData }) => {
 
                 <div className="text-md text-slate-500">
                   <div>
-                    <p className="font-bold text-slate-700">Fatura numarası:</p>
+                    <p className="font-bold text-slate-700">Bill Number:</p>
 
                     <p>
                       000
@@ -55,7 +55,7 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel, printModalData }) => {
                   </div>
                   <div>
                     <p className="font-bold text-slate-700 mt-2">
-                      Veriliş Tarihi:
+                      Date of issue:
                     </p>
                     <p>
                       {new Date(printModalData?.createdAt).toLocaleDateString(
@@ -67,11 +67,11 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel, printModalData }) => {
 
                 <div className="text-md text-slate-500">
                   <div>
-                    <p className="font-bold text-slate-700">Şartlar:</p>
-                    <p>10 gün</p>
+                    <p className="font-bold text-slate-700">Conditions:</p>
+                    <p>10 day</p>
                   </div>
                   <div>
-                    <p className="font-bold text-slate-700 mt-2">Vade:</p>
+                    <p className="font-bold text-slate-700 mt-2">Maturity:</p>
                     <p>
                       {new Date(printModalData?.createdAt).toLocaleDateString(
                         "tr-TR"
@@ -89,31 +89,31 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel, printModalData }) => {
                       scope="col"
                       className="py-3.5 pl-4 text-left text-sm font-normal text-slate-700 sm:pl-6 md:pl-0 sm:table-cell invisible sm:visible"
                     >
-                      Görsel
+                      Image
                     </th>
                     <th
                       scope="col"
                       className="py-3.5 text-left text-sm font-normal text-slate-700 sm:table-cell invisible sm:visible"
                     >
-                      Başlık
+                      Title
                     </th>
                     <th
                       scope="col"
                       className="py-3.5 pl-4 text-center text-sm font-normal text-slate-700 sm:pl-6 md:pl-0 sm:table-cell invisible sm:visible"
                     >
-                      Fiyat
+                      Price
                     </th>
                     <th
                       scope="col"
                       className="py-3.5 pl-4 text-center text-sm font-normal text-slate-700 sm:pl-6 md:pl-0 sm:table-cell invisible sm:visible"
                     >
-                      Adet
+                      Quantity
                     </th>
                     <th
                       scope="col"
                       className="py-3.5 pl-4 text-end text-sm font-normal text-slate-700 sm:pl-6 md:pl-0 sm:table-cell"
                     >
-                      Toplam
+                      Total
                     </th>
                   </tr>
                 </thead>
@@ -225,15 +225,16 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel, printModalData }) => {
               <div className="py-9">
                 <div className="border-t pt-9 border-slate-200">
                   <p className="text-sm font-light text-slate-700">
-                    Ödeme koşulları 14 gündür. Paketlenmemiş Borçların Geç
-                    Ödenmesi Yasası 0000'e göre, serbest çalışanların bu süreden
-                    sonra borçların ödenmemesi durumunda 00.00 gecikme ücreti
-                    talep etme hakkına sahip olduklarını ve bu noktada bu ücrete
-                    ek olarak yeni bir fatura sunulacağını lütfen unutmayın.
-                    Revize faturanın 14 gün içinde ödenmemesi durumunda, vadesi
-                    geçmiş hesaba ek faiz ve %8 yasal oran artı %0,5 Bank of
-                    England tabanı olmak üzere toplam %8,5 uygulanacaktır.
-                    Taraflar Kanun hükümleri dışında sözleşme yapamazlar.
+                    Payment terms are 14 days. Pass on Unpackaged Debts
+                    According to the Payment Act 0000, freelancers are entitled
+                    to 00.00 late fee if debts are not paid after that they have
+                    the right to demand and at this point Please note that a new
+                    invoice will be presented additionally. If the revised
+                    invoice is not paid within 14 days, the due date additional
+                    interest on past account and 8% legal rate plus 0.5% Bank of
+                    A total of 8.5% will be applied, including the England base.
+                    Parties cannot make a contract outside the provisions of the
+                    Law.
                   </p>
                 </div>
               </div>
@@ -244,7 +245,7 @@ const PrintBill = ({ isModalOpen, handleOk, handleCancel, printModalData }) => {
 
       <div className="flex justify-end mt-4">
         <Button onClick={handlePrint} type="primary" size="large">
-          Yazdır
+          Print
         </Button>
       </div>
     </Modal>
