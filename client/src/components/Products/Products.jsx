@@ -67,7 +67,7 @@ const Products = () => {
     <div className="products grid grid-cols-products-fill gap-4">
       {loading ? (
         <Spin
-          className="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-full"
+          className="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-full md:top-1/3 md:translate-y-1/2"
           tip="Loading"
           size="large"
         />
