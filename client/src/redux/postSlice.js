@@ -163,7 +163,7 @@ export const postSlice = createSlice({
     builder.addCase(getProductsItems.fulfilled, (state, action) => {
       state.productsItems = action.payload;
       state.filteredProducts = action.payload;
-      state.loading = true;
+      state.loading = false;
     });
 
     builder.addCase(addProductItem.fulfilled, (state, action) => {
