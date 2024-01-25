@@ -66,7 +66,11 @@ const Products = () => {
   return (
     <div className="products grid grid-cols-products-fill gap-4">
       {loading ? (
-        <Spin className="w-3/4 absolute top-1/3" tip="Loading" size="large" />
+        <Spin
+          className="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-full"
+          tip="Loading"
+          size="large"
+        />
       ) : (
         <>
           {filteredProducts
@@ -87,7 +91,9 @@ const Products = () => {
                   key={item._id}
                 >
                   <div className="flex flex-col justify-center items-start gap-1">
-                    <span className="text-lg font-semibold tracking-tight">{item.title}</span>
+                    <span className="text-lg font-semibold tracking-tight">
+                      {item.title}
+                    </span>
                     <span className="text-base font-medium">${item.price}</span>
                   </div>
 

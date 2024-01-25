@@ -6,13 +6,17 @@ import {
   decrementItem,
   deleteProduct,
 } from "../../redux/postSlice";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 
 const BasketTable = () => {
   const { cartItems, categoriesItems } = useSelector((state) => state.post);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const handleDecrement = (item) => {
     dispatch(decrementItem(item));

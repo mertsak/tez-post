@@ -150,7 +150,7 @@ const CustomerTable = () => {
     <>
       {loading ? (
         <Spin
-          className="w-screen absolute top-1/2"
+          className="absolute top-1/3 left-1/2 transform -translate-x-1/2 translate-y-full"
           tip="Loading"
           size="large"
         />
